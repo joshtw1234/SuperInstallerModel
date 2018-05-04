@@ -14,6 +14,7 @@ namespace SuperInstallModel.Model
             var smData = GetFirmwareData(Provider.RSMB);
             SMBIOSMajorV = smData.SMBIOSMajorVersion;
             SMBIOSMinorV = smData.SMBIOSMinorVersion;
+            Console.WriteLine($"SMBIOS Maj {SMBIOSMajorV} Min {SMBIOSMinorV}");
             var type0 = GetSMBIOSTypeData(0, smData.SMBIOSTableData);
             dicSMBIOS.Add(0, type0);
             var type1 = GetSMBIOSTypeData(1, smData.SMBIOSTableData);
@@ -114,43 +115,57 @@ namespace SuperInstallModel.Model
             Array.Copy(typeRawByte, ((BaseSMBIOSType)tmpObj).Length, strByte, 0, strByte.Length);
             string str = System.Text.Encoding.Default.GetString(strByte);
             string[] strs = str.Split('\0');
-            switch (typeIdx)
+            try
             {
-                case 0:
-                    ((CSMBIOSType0)revType).Vendor = strs[((SMBIOSType0)revType.smBIOS).byVendor - 1];
-                    ((CSMBIOSType0)revType).BIOSVersion = strs[((SMBIOSType0)revType.smBIOS).byBiosVersion - 1];
-                    ((CSMBIOSType0)revType).BIOSReleaseDate = strs[((SMBIOSType0)revType.smBIOS).byBIOSReleaseDate - 1];
-                    break;
-                case 1:
-                    ((CSMBIOSType1)revType).Manufacturer = strs[((SMBIOSType1)revType.smBIOS).byManufacturer - 1];
-                    ((CSMBIOSType1)revType).ProductName = strs[((SMBIOSType1)revType.smBIOS).byProductName - 1];
-                    ((CSMBIOSType1)revType).Version = strs[((SMBIOSType1)revType.smBIOS).byVersion - 1];
-                    ((CSMBIOSType1)revType).SerialNum = strs[((SMBIOSType1)revType.smBIOS).bySerialNumber - 1];
-                    ((CSMBIOSType1)revType).SKUNumber = strs[((SMBIOSType1)revType.smBIOS).bySKUNumber - 1];
-                    ((CSMBIOSType1)revType).Family = strs[((SMBIOSType1)revType.smBIOS).byFamily - 1];
-                    break;
-                case 2:
-                    ((CSMBIOSType2)revType).Manufacturer = strs[((SMBIOSType2)revType.smBIOS).byManufacturer - 1];
-                    ((CSMBIOSType2)revType).Product = strs[((SMBIOSType2)revType.smBIOS).byProduct - 1];
-                    ((CSMBIOSType2)revType).Version = strs[((SMBIOSType2)revType.smBIOS).byVersion - 1];
-                    ((CSMBIOSType2)revType).SerialNumber = strs[((SMBIOSType2)revType.smBIOS).bySerialNumber - 1];
-                    ((CSMBIOSType2)revType).AssetTag = strs[((SMBIOSType2)revType.smBIOS).byAssetTag - 1];
-                    ((CSMBIOSType2)revType).LocationinChassis = strs[((SMBIOSType2)revType.smBIOS).byLocationInChassis - 1];
-                    break;
-                case 3:
-                    ((CSMBIOSType3)revType).Manufacturer = strs[((SMBIOSType3)revType.smBIOS).byManufacturer - 1];
-                    ((CSMBIOSType3)revType).Version = strs[((SMBIOSType3)revType.smBIOS).byVersion - 1];
-                    ((CSMBIOSType3)revType).SerialNumber = strs[((SMBIOSType3)revType.smBIOS).bySerialNumber - 1];
-                    ((CSMBIOSType3)revType).AssetTag = strs[((SMBIOSType3)revType.smBIOS).byAssetTag - 1];
-                    break;
-                case 4:
-                    ((CSMBIOSType4)revType).SocketDesignation = strs[((SMBIOSType4)revType.smBIOS).bySocketDesignation - 1];
-                    ((CSMBIOSType4)revType).ProcessorManufacturer = strs[((SMBIOSType4)revType.smBIOS).byProcessorManufacturer - 1];
-                    ((CSMBIOSType4)revType).PartNumber = strs[((SMBIOSType4)revType.smBIOS).byPartNumber - 1];
-                    ((CSMBIOSType4)revType).ProcessorVersion = strs[((SMBIOSType4)revType.smBIOS).byProcessorVersion - 1];
-                    ((CSMBIOSType4)revType).SerialNumber = strs[((SMBIOSType4)revType.smBIOS).bySerialNumber - 1];
-                    ((CSMBIOSType4)revType).AssetTag = strs[((SMBIOSType4)revType.smBIOS).byAssetTagNumber - 1];
-                    break;
+                switch (typeIdx)
+                {
+                    case 0:
+                        ((CSMBIOSType0)revType).Vendor = strs[((SMBIOSType0)revType.smBIOS).byVendor - 1];
+                        ((CSMBIOSType0)revType).BIOSVersion = strs[((SMBIOSType0)revType.smBIOS).byBiosVersion - 1];
+                        ((CSMBIOSType0)revType).BIOSReleaseDate = strs[((SMBIOSType0)revType.smBIOS).byBIOSReleaseDate - 1];
+                        break;
+                    case 1:
+                        ((CSMBIOSType1)revType).Manufacturer = strs[((SMBIOSType1)revType.smBIOS).byManufacturer - 1];
+                        ((CSMBIOSType1)revType).ProductName = strs[((SMBIOSType1)revType.smBIOS).byProductName - 1];
+                        ((CSMBIOSType1)revType).Version = strs[((SMBIOSType1)revType.smBIOS).byVersion - 1];
+                        ((CSMBIOSType1)revType).SerialNum = strs[((SMBIOSType1)revType.smBIOS).bySerialNumber - 1];
+                        ((CSMBIOSType1)revType).SKUNumber = strs[((SMBIOSType1)revType.smBIOS).bySKUNumber - 1];
+                        ((CSMBIOSType1)revType).Family = strs[((SMBIOSType1)revType.smBIOS).byFamily - 1];
+                        break;
+                    case 2:
+                        ((CSMBIOSType2)revType).Manufacturer = strs[((SMBIOSType2)revType.smBIOS).byManufacturer - 1];
+                        ((CSMBIOSType2)revType).Product = strs[((SMBIOSType2)revType.smBIOS).byProduct - 1];
+                        ((CSMBIOSType2)revType).Version = strs[((SMBIOSType2)revType.smBIOS).byVersion - 1];
+                        ((CSMBIOSType2)revType).SerialNumber = strs[((SMBIOSType2)revType.smBIOS).bySerialNumber - 1];
+                        ((CSMBIOSType2)revType).AssetTag = strs[((SMBIOSType2)revType.smBIOS).byAssetTag - 1];
+                        ((CSMBIOSType2)revType).LocationinChassis = strs[((SMBIOSType2)revType.smBIOS).byLocationInChassis - 1];
+                        break;
+                    case 3:
+                        ((CSMBIOSType3)revType).Manufacturer = strs[((SMBIOSType3)revType.smBIOS).byManufacturer - 1];
+                        ((CSMBIOSType3)revType).Version = strs[((SMBIOSType3)revType.smBIOS).byVersion - 1];
+                        ((CSMBIOSType3)revType).SerialNumber = strs[((SMBIOSType3)revType.smBIOS).bySerialNumber - 1];
+                        try
+                        {
+                            //Usually This type value will not fill completed.
+                            ((CSMBIOSType3)revType).AssetTag = strs[((SMBIOSType3)revType.smBIOS).byAssetTag - 1];
+                        }catch(Exception ex)
+                        {
+                            Console.WriteLine($"[Exception type] {typeIdx} [Asset] {((SMBIOSType3)revType.smBIOS).byAssetTag} {ex.Message} {ex.StackTrace}");
+                        }
+                        break;
+                    case 4:
+                        ((CSMBIOSType4)revType).SocketDesignation = strs[((SMBIOSType4)revType.smBIOS).bySocketDesignation - 1];
+                        ((CSMBIOSType4)revType).ProcessorManufacturer = strs[((SMBIOSType4)revType.smBIOS).byProcessorManufacturer - 1];
+                        ((CSMBIOSType4)revType).PartNumber = strs[((SMBIOSType4)revType.smBIOS).byPartNumber - 1];
+                        ((CSMBIOSType4)revType).ProcessorVersion = strs[((SMBIOSType4)revType.smBIOS).byProcessorVersion - 1];
+                        ((CSMBIOSType4)revType).SerialNumber = strs[((SMBIOSType4)revType.smBIOS).bySerialNumber - 1];
+                        ((CSMBIOSType4)revType).AssetTag = strs[((SMBIOSType4)revType.smBIOS).byAssetTagNumber - 1];
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"[Exception type] {typeIdx} {ex.Message} {ex.StackTrace}");
             }
             return revType;
         }
