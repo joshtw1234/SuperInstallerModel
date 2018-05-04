@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperInstallModel.Model
 {
-    class SMBIOSHelper
+    class MSFWTableHelper
     {
         Dictionary<int, CBaseSMBIOSType> dicSMBIOS;
-        public SMBIOSHelper()
+        public MSFWTableHelper()
         {
             dicSMBIOS = new Dictionary<int, CBaseSMBIOSType>();
             var smData = GetFirmwareData(Provider.RSMB);
@@ -18,6 +15,8 @@ namespace SuperInstallModel.Model
             dicSMBIOS.Add(0, type0);
             var type1 = GetSMBIOSTypeData(1, smData.SMBIOSTableData);
             dicSMBIOS.Add(1, type1);
+            var type2 = GetSMBIOSTypeData(2, smData.SMBIOSTableData);
+            dicSMBIOS.Add(2, type2);
         }
 
         private RawSMBIOSData GetFirmwareData(Provider provider)
@@ -34,15 +33,12 @@ namespace SuperInstallModel.Model
             }
             smData = (RawSMBIOSData)Marshal.PtrToStructure(nativeBuffer, typeof(RawSMBIOSData));
             Marshal.FreeHGlobal(nativeBuffer);
-
-
-
             return smData;
         }
 
         private CBaseSMBIOSType GetSMBIOSTypeData(int typeIdx, byte[] rawSMBIOS)
         {
-            object revObj = null;
+            
             byte[] tmpByte;
             int rawType = rawSMBIOS[0];
             int rawFormatLen = rawSMBIOS[1];
@@ -69,25 +65,31 @@ namespace SuperInstallModel.Model
                     }
                 }
             }
+            return GetCSMBIOSType(typeIdx, tmpByte);
+        }
+
+        private CBaseSMBIOSType GetCSMBIOSType(int typeIdx, byte[] tmpByte)
+        {
             CBaseSMBIOSType revType = null;
+            object tmpObj = null;
             GCHandle gch = GCHandle.Alloc(tmpByte, GCHandleType.Pinned);
             switch (typeIdx)
             {
                 case 1:
-                    revObj = Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType1));
+                    tmpObj = Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType1));
                     revType = new CSMBIOSType1();
-                    revType.smBIOS = (SMBIOSType1)revObj;
+                    revType.smBIOS = (SMBIOSType1)tmpObj;
                     break;
                 default:
-                    revObj = (SMBIOSType0)Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType0));
+                    tmpObj = (SMBIOSType0)Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType0));
                     revType = new CSMBIOSType0();
-                    revType.smBIOS = (SMBIOSType0)revObj;
+                    revType.smBIOS = (SMBIOSType0)tmpObj;
                     break;
             }
             gch.Free();
             //Get String in Table
-            byte[] strByte = new byte[tmpByte.Length - ((BaseSMBIOSType)revObj).Length];
-            Array.Copy(tmpByte, ((BaseSMBIOSType)revObj).Length, strByte, 0, strByte.Length);
+            byte[] strByte = new byte[tmpByte.Length - ((BaseSMBIOSType)tmpObj).Length];
+            Array.Copy(tmpByte, ((BaseSMBIOSType)tmpObj).Length, strByte, 0, strByte.Length);
             string str = System.Text.Encoding.Default.GetString(strByte);
             string[] strs = str.Split('\0');
             switch (typeIdx)
@@ -106,13 +108,20 @@ namespace SuperInstallModel.Model
                     ((CSMBIOSType0)revType).BIOSReleaseDate = strs[((SMBIOSType0)revType.smBIOS).byBIOSReleaseDate - 1];
                     break;
             }
-
             return revType;
         }
 
-        public Dictionary<int, CBaseSMBIOSType> GetSMBIOSData()
+        public object GetSMBIOSData(Provider proVider)
         {
-            return dicSMBIOS;
+            switch(proVider)
+            {
+                case Provider.RSMB:
+                    return dicSMBIOS;
+                case Provider.ACPI:
+                    return null;
+
+            }
+            return null;
         }
     }
 }

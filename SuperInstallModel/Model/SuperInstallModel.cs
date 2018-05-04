@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperInstallModel.Model
 {
@@ -14,7 +10,7 @@ namespace SuperInstallModel.Model
         public bool Initialize()
         {
             bool rev = false;
-            var dicSMBIOS = new SMBIOSHelper().GetSMBIOSData();
+            var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
             {
                 Console.WriteLine($"[Vendor] {((CSMBIOSType0)dicSMBIOS[0]).Vendor} [Bios Ver] {((CSMBIOSType0)dicSMBIOS[0]).BIOSVersion} [Bios Date] {((CSMBIOSType0)dicSMBIOS[0]).BIOSReleaseDate}\r\n");
