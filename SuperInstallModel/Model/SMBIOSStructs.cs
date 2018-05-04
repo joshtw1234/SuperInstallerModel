@@ -68,7 +68,7 @@ namespace SuperInstallModel.Model
     public class SMBIOSType2 : BaseSMBIOSType
     {
         public byte byManufacturer;
-        public byte byProductName;
+        public byte byProduct;
         public byte byVersion;
         public byte bySerialNumber;
         public byte byAssetTag;
@@ -103,6 +103,16 @@ namespace SuperInstallModel.Model
         public string SerialNum;
         public string SKUNumber;
         public string Family;
+    }
+
+    public class CSMBIOSType2 : CBaseSMBIOSType
+    {
+        public string Manufacturer;
+        public string Product;
+        public string Version;
+        public string SerialNumber;
+        public string AssetTag;
+        public string LocationinChassis;
     }
     #endregion
 }

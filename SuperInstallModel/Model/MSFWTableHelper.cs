@@ -38,8 +38,7 @@ namespace SuperInstallModel.Model
 
         private CBaseSMBIOSType GetSMBIOSTypeData(int typeIdx, byte[] rawSMBIOS)
         {
-            
-            byte[] tmpByte;
+            byte[] typeRawByte;
             int rawType = rawSMBIOS[0];
             int rawFormatLen = rawSMBIOS[1];
             int nextTypeStart = 0, curTypeEnd = 0;
@@ -52,8 +51,8 @@ namespace SuperInstallModel.Model
                     {
                         //Found Table
                         curTypeEnd = i + 1;
-                        tmpByte = new byte[curTypeEnd - nextTypeStart + 1];
-                        Array.Copy(rawSMBIOS, nextTypeStart, tmpByte, 0, tmpByte.Length);
+                        typeRawByte = new byte[curTypeEnd - nextTypeStart + 1];
+                        Array.Copy(rawSMBIOS, nextTypeStart, typeRawByte, 0, typeRawByte.Length);
                         break;
                     }
                     else
@@ -65,20 +64,25 @@ namespace SuperInstallModel.Model
                     }
                 }
             }
-            return GetCSMBIOSType(typeIdx, tmpByte);
+            return GetCSMBIOSType(typeIdx, typeRawByte);
         }
 
-        private CBaseSMBIOSType GetCSMBIOSType(int typeIdx, byte[] tmpByte)
+        private CBaseSMBIOSType GetCSMBIOSType(int typeIdx, byte[] typeRawByte)
         {
             CBaseSMBIOSType revType = null;
             object tmpObj = null;
-            GCHandle gch = GCHandle.Alloc(tmpByte, GCHandleType.Pinned);
+            GCHandle gch = GCHandle.Alloc(typeRawByte, GCHandleType.Pinned);
             switch (typeIdx)
             {
                 case 1:
                     tmpObj = Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType1));
                     revType = new CSMBIOSType1();
                     revType.smBIOS = (SMBIOSType1)tmpObj;
+                    break;
+                case 2:
+                    tmpObj = Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType2));
+                    revType = new CSMBIOSType2();
+                    revType.smBIOS = (SMBIOSType2)tmpObj;
                     break;
                 default:
                     tmpObj = (SMBIOSType0)Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType0));
@@ -88,8 +92,8 @@ namespace SuperInstallModel.Model
             }
             gch.Free();
             //Get String in Table
-            byte[] strByte = new byte[tmpByte.Length - ((BaseSMBIOSType)tmpObj).Length];
-            Array.Copy(tmpByte, ((BaseSMBIOSType)tmpObj).Length, strByte, 0, strByte.Length);
+            byte[] strByte = new byte[typeRawByte.Length - ((BaseSMBIOSType)tmpObj).Length];
+            Array.Copy(typeRawByte, ((BaseSMBIOSType)tmpObj).Length, strByte, 0, strByte.Length);
             string str = System.Text.Encoding.Default.GetString(strByte);
             string[] strs = str.Split('\0');
             switch (typeIdx)
@@ -101,6 +105,14 @@ namespace SuperInstallModel.Model
                     ((CSMBIOSType1)revType).SerialNum = strs[((SMBIOSType1)revType.smBIOS).bySerialNumber - 1];
                     ((CSMBIOSType1)revType).SKUNumber = strs[((SMBIOSType1)revType.smBIOS).bySKUNumber - 1];
                     ((CSMBIOSType1)revType).Family = strs[((SMBIOSType1)revType.smBIOS).byFamily - 1];
+                    break;
+                case 2:
+                    ((CSMBIOSType2)revType).Manufacturer = strs[((SMBIOSType2)revType.smBIOS).byManufacturer - 1];
+                    ((CSMBIOSType2)revType).Product = strs[((SMBIOSType2)revType.smBIOS).byProduct - 1];
+                    ((CSMBIOSType2)revType).Version = strs[((SMBIOSType2)revType.smBIOS).byVersion - 1];
+                    ((CSMBIOSType2)revType).SerialNumber = strs[((SMBIOSType2)revType.smBIOS).bySerialNumber - 1];
+                    ((CSMBIOSType2)revType).AssetTag = strs[((SMBIOSType2)revType.smBIOS).byAssetTag - 1];
+                    ((CSMBIOSType2)revType).LocationinChassis = strs[((SMBIOSType2)revType.smBIOS).byLocationInChassis - 1];
                     break;
                 default:
                     ((CSMBIOSType0)revType).Vendor = strs[((SMBIOSType0)revType.smBIOS).byVendor - 1];
