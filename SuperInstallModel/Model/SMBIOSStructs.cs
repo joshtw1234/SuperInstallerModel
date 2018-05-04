@@ -81,6 +81,72 @@ namespace SuperInstallModel.Model
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 512)]
         public byte[] ContainedObjectHandles;
     }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public class SMBIOSType3 : BaseSMBIOSType
+    {
+        public byte byManufacturer;
+        public byte byType;
+        public byte byVersion;
+        public byte bySerialNumber;
+        public byte byAssetTag;
+        public byte byBootupState;
+        public byte byPowerSupplyState;
+        public byte byThermalState;
+        public byte bySecurityStatus;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+        public byte[] dwOEMdefined;
+        public byte byHeight;
+        public byte byNumberOfPowerCords;
+        public byte byContainedElementCount;
+        public byte byContainedElementRecordLength;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 255)]
+        public byte[] ContainedElements;
+        public byte bySKUNumber;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public class SMBIOSType4 : BaseSMBIOSType
+    {
+        public byte bySocketDesignation;
+        public byte byProcessorType;
+        public byte byProcessorFamily;
+        public byte byProcessorManufacturer;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        public byte[] qwProcessorID;
+        public byte byProcessorVersion;
+        public byte byVoltage;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wExternalClock;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wMaxSpeed;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wCurrentSpeed;
+        public byte byStatus;
+        public byte byProcessorUpgrade;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wL1CacheHandle;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wL2CacheHandle;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wL3CacheHandle;
+        public byte bySerialNumber;
+        public byte byAssetTagNumber;
+        public byte byPartNumber;
+        public byte byCoreCount;
+        public byte byCoreEnabled;
+        public byte byThreadCount;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wProcessorCharacteristics;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wProcessorFamily2;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wCoreCount2;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wCoreEnabled2;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+        public byte[] wThreadCount2;
+    }
     #endregion
 
     #region C# SMBIOS Type
@@ -113,6 +179,25 @@ namespace SuperInstallModel.Model
         public string SerialNumber;
         public string AssetTag;
         public string LocationinChassis;
+    }
+
+    public class CSMBIOSType3 : CBaseSMBIOSType
+    {
+        public string Manufacturer;
+        public string Version;
+        public string SerialNumber;
+        public string AssetTag;
+        public string SKUNumber;
+    }
+
+    public class CSMBIOSType4 : CBaseSMBIOSType
+    {
+        public string SocketDesignation;
+        public string ProcessorManufacturer;
+        public string ProcessorVersion;
+        public string SerialNumber;
+        public string AssetTag;
+        public string PartNumber;
     }
     #endregion
 }

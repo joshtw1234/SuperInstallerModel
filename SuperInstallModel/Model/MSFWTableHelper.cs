@@ -6,17 +6,24 @@ namespace SuperInstallModel.Model
 {
     class MSFWTableHelper
     {
+        int SMBIOSMajorV = 0, SMBIOSMinorV = 0;
         Dictionary<int, CBaseSMBIOSType> dicSMBIOS;
         public MSFWTableHelper()
         {
             dicSMBIOS = new Dictionary<int, CBaseSMBIOSType>();
             var smData = GetFirmwareData(Provider.RSMB);
+            SMBIOSMajorV = smData.SMBIOSMajorVersion;
+            SMBIOSMinorV = smData.SMBIOSMinorVersion;
             var type0 = GetSMBIOSTypeData(0, smData.SMBIOSTableData);
             dicSMBIOS.Add(0, type0);
             var type1 = GetSMBIOSTypeData(1, smData.SMBIOSTableData);
             dicSMBIOS.Add(1, type1);
             var type2 = GetSMBIOSTypeData(2, smData.SMBIOSTableData);
             dicSMBIOS.Add(2, type2);
+            var type3 = GetSMBIOSTypeData(3, smData.SMBIOSTableData);
+            dicSMBIOS.Add(3, type3);
+            var type4 = GetSMBIOSTypeData(4, smData.SMBIOSTableData);
+            dicSMBIOS.Add(4, type4);
         }
 
         private RawSMBIOSData GetFirmwareData(Provider provider)
@@ -74,6 +81,11 @@ namespace SuperInstallModel.Model
             GCHandle gch = GCHandle.Alloc(typeRawByte, GCHandleType.Pinned);
             switch (typeIdx)
             {
+                case 0:
+                    tmpObj = (SMBIOSType0)Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType0));
+                    revType = new CSMBIOSType0();
+                    revType.smBIOS = (SMBIOSType0)tmpObj;
+                    break;
                 case 1:
                     tmpObj = Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType1));
                     revType = new CSMBIOSType1();
@@ -84,11 +96,17 @@ namespace SuperInstallModel.Model
                     revType = new CSMBIOSType2();
                     revType.smBIOS = (SMBIOSType2)tmpObj;
                     break;
-                default:
-                    tmpObj = (SMBIOSType0)Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType0));
-                    revType = new CSMBIOSType0();
-                    revType.smBIOS = (SMBIOSType0)tmpObj;
+                case 3:
+                    tmpObj = Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType3));
+                    revType = new CSMBIOSType3();
+                    revType.smBIOS = (SMBIOSType3)tmpObj;
                     break;
+                case 4:
+                    tmpObj = Marshal.PtrToStructure(gch.AddrOfPinnedObject(), typeof(SMBIOSType4));
+                    revType = new CSMBIOSType4();
+                    revType.smBIOS = (SMBIOSType4)tmpObj;
+                    break;
+
             }
             gch.Free();
             //Get String in Table
@@ -98,6 +116,11 @@ namespace SuperInstallModel.Model
             string[] strs = str.Split('\0');
             switch (typeIdx)
             {
+                case 0:
+                    ((CSMBIOSType0)revType).Vendor = strs[((SMBIOSType0)revType.smBIOS).byVendor - 1];
+                    ((CSMBIOSType0)revType).BIOSVersion = strs[((SMBIOSType0)revType.smBIOS).byBiosVersion - 1];
+                    ((CSMBIOSType0)revType).BIOSReleaseDate = strs[((SMBIOSType0)revType.smBIOS).byBIOSReleaseDate - 1];
+                    break;
                 case 1:
                     ((CSMBIOSType1)revType).Manufacturer = strs[((SMBIOSType1)revType.smBIOS).byManufacturer - 1];
                     ((CSMBIOSType1)revType).ProductName = strs[((SMBIOSType1)revType.smBIOS).byProductName - 1];
@@ -114,10 +137,19 @@ namespace SuperInstallModel.Model
                     ((CSMBIOSType2)revType).AssetTag = strs[((SMBIOSType2)revType.smBIOS).byAssetTag - 1];
                     ((CSMBIOSType2)revType).LocationinChassis = strs[((SMBIOSType2)revType.smBIOS).byLocationInChassis - 1];
                     break;
-                default:
-                    ((CSMBIOSType0)revType).Vendor = strs[((SMBIOSType0)revType.smBIOS).byVendor - 1];
-                    ((CSMBIOSType0)revType).BIOSVersion = strs[((SMBIOSType0)revType.smBIOS).byBiosVersion - 1];
-                    ((CSMBIOSType0)revType).BIOSReleaseDate = strs[((SMBIOSType0)revType.smBIOS).byBIOSReleaseDate - 1];
+                case 3:
+                    ((CSMBIOSType3)revType).Manufacturer = strs[((SMBIOSType3)revType.smBIOS).byManufacturer - 1];
+                    ((CSMBIOSType3)revType).Version = strs[((SMBIOSType3)revType.smBIOS).byVersion - 1];
+                    ((CSMBIOSType3)revType).SerialNumber = strs[((SMBIOSType3)revType.smBIOS).bySerialNumber - 1];
+                    ((CSMBIOSType3)revType).AssetTag = strs[((SMBIOSType3)revType.smBIOS).byAssetTag - 1];
+                    break;
+                case 4:
+                    ((CSMBIOSType4)revType).SocketDesignation = strs[((SMBIOSType4)revType.smBIOS).bySocketDesignation - 1];
+                    ((CSMBIOSType4)revType).ProcessorManufacturer = strs[((SMBIOSType4)revType.smBIOS).byProcessorManufacturer - 1];
+                    ((CSMBIOSType4)revType).PartNumber = strs[((SMBIOSType4)revType.smBIOS).byPartNumber - 1];
+                    ((CSMBIOSType4)revType).ProcessorVersion = strs[((SMBIOSType4)revType.smBIOS).byProcessorVersion - 1];
+                    ((CSMBIOSType4)revType).SerialNumber = strs[((SMBIOSType4)revType.smBIOS).bySerialNumber - 1];
+                    ((CSMBIOSType4)revType).AssetTag = strs[((SMBIOSType4)revType.smBIOS).byAssetTagNumber - 1];
                     break;
             }
             return revType;
