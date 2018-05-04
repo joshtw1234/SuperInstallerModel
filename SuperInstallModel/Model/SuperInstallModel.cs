@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace SuperInstallModel.Model
 {
     class SuperInstallModel
     {
-        
+        const string WMIRoot = "ROOT\\CIMV2";
+        const string WMIQueryStr = "SELECT * FROM Win32_OperatingSystem";
+        const string WinCaption = "Caption";
+        const string WinVersion = "Version";
+        const string WinPrimary = "Primary";
+        const string WinArchitecture = "OSArchitecture";
 
         public bool Initialize()
         {
             bool rev = false;
+            Console.WriteLine($"[Caption] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinCaption)}");
+            Console.WriteLine($"[Version] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinVersion)}");
+            Console.WriteLine($"[Primary] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinPrimary)}");
+            Console.WriteLine($"[OSArchitecture] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinArchitecture)}");
+            Console.WriteLine();
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
             {
