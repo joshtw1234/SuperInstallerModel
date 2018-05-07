@@ -12,7 +12,13 @@ namespace SuperInstallModel.Model
         const string WinVersion = "Version";
         const string WinPrimary = "Primary";
         const string WinArchitecture = "OSArchitecture";
+        const string WinManufacturer = "Manufacturer";
+        const string WinName = "Name";
 
+        const string WMIBIOSQueryStry = "SELECT * FROM Win32_BIOS";
+        const string WMISystemQueryStry = "SELECT * FROM Win32_ComputerSystem";
+        const string WMICPUQueryStry = "SELECT * FROM Win32_Processor";
+        
         public bool Initialize()
         {
             bool rev = false;
@@ -20,6 +26,11 @@ namespace SuperInstallModel.Model
             Console.WriteLine($"[Version] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinVersion)}");
             Console.WriteLine($"[Primary] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinPrimary)}");
             Console.WriteLine($"[OSArchitecture] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinArchitecture)}");
+            Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(WMIRoot, WMIBIOSQueryStry, WinCaption)}");
+            Console.WriteLine($"[System Vendor] {Win32Dlls.GetManageObjValue(WMIRoot, WMISystemQueryStry, WinManufacturer)}");
+            Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(WMIRoot, WMICPUQueryStry, WinName)}");
+
+            //var resu = Win32Dlls.GetManageObjValue(WMIRoot, WMIBIOSQueryStry, WinCaption);
             Console.WriteLine();
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
