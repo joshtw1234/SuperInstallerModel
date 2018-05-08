@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Model\MSFWTableHelper.cs" />
     <Compile Include="Model\SMBIOSStructs.cs" />
+    <Compile Include="Model\SuperInstallConstants.cs" />
     <Compile Include="Model\SuperInstallModel.cs" />
     <Compile Include="Model\Win32Dlls.cs" />
     <Compile Include="Program.cs" />
