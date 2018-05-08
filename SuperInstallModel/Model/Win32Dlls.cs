@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Management;
 using System.Runtime.InteropServices;
 
@@ -13,6 +14,32 @@ namespace SuperInstallModel.Model
 
         [DllImport(KERNEL, EntryPoint = "GetSystemFirmwareTable", CallingConvention = CallingConvention.Winapi, SetLastError = true)]
         public static extern int GetSystemFirmwareTable(Provider firmwareTableProviderSignature, int firmwareTableID, IntPtr firmwareTableBuffer, int bufferSize);
+
+        private static object locker = new Object();
+        public static void Logger(string logPath, string lines)
+        {
+            try
+            {
+                string strOutput = $"{DateTime.Now}={lines}";
+                lock (locker)
+                {
+                    using (FileStream file = new FileStream(logPath, FileMode.Append, FileAccess.Write, FileShare.Read))
+                    {
+                        StreamWriter writer = new StreamWriter(file);
+                        writer.WriteLine(strOutput);
+                        writer.Flush();
+                        file.Flush(true);
+                        writer.Close();
+                        file.Close();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logger(SuperInstallConstants.LogPath, $"{System.Reflection.MethodBase.GetCurrentMethod().Name}:Exception:{ex.Message}");
+            }
+        }
 
         public static object GetManageObjValue(string queryScope, string queryStr, string propertyStr)
         {
@@ -29,24 +56,24 @@ namespace SuperInstallModel.Model
                     {
                         if (revStr is string[])
                         {
-                            //OMENEventSource.Log.Info(string.Format("{0} \"{1}\"", propertyStr, ((string[])revStr)[0].ToString()));
+                            Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{((string[])revStr)[0].ToString()}\"");
                         }
                         else
                         {
-                            //OMENEventSource.Log.Info(string.Format("{0} \"{1}\"", propertyStr, revStr.ToString()));
+                            Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{revStr.ToString()}\"");
                         }
                         return revStr;
                     }
                     else
                     {
-                        //OMENEventSource.Log.Info(string.Format("{0} \"{1}\"", propertyStr, "Not Found!!"));
+                        Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"Not Found!!\"");
                     }
 
                 }
 
                 catch (Exception ex)
                 {
-                    //OMENEventSource.Log.Error(string.Format("{0} \"{1}\"", propertyStr, ex.Message));
+                    Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{ex.Message}\"");
                 }
 
             }

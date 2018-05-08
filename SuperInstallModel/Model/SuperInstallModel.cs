@@ -1,34 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System.IO;
 
 namespace SuperInstallModel.Model
 {
     class SuperInstallModel
     {
-        const string WMIRoot = "ROOT\\CIMV2";
-        const string WMIQueryStr = "SELECT * FROM Win32_OperatingSystem";
-        const string WinCaption = "Caption";
-        const string WinVersion = "Version";
-        const string WinPrimary = "Primary";
-        const string WinArchitecture = "OSArchitecture";
-        const string WinManufacturer = "Manufacturer";
-        const string WinName = "Name";
-
-        const string WMIBIOSQueryStry = "SELECT * FROM Win32_BIOS";
-        const string WMISystemQueryStry = "SELECT * FROM Win32_ComputerSystem";
-        const string WMICPUQueryStry = "SELECT * FROM Win32_Processor";
+        
         
         public bool Initialize()
         {
             bool rev = false;
-            Console.WriteLine($"[Caption] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinCaption)}");
-            Console.WriteLine($"[Version] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinVersion)}");
-            Console.WriteLine($"[Primary] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinPrimary)}");
-            Console.WriteLine($"[OSArchitecture] {Win32Dlls.GetManageObjValue(WMIRoot, WMIQueryStr, WinArchitecture)}");
-            Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(WMIRoot, WMIBIOSQueryStry, WinCaption)}");
-            Console.WriteLine($"[System Vendor] {Win32Dlls.GetManageObjValue(WMIRoot, WMISystemQueryStry, WinManufacturer)}");
-            Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(WMIRoot, WMICPUQueryStry, WinName)}");
+            FileInfo fi = new FileInfo(SuperInstallConstants.LogPath);
+            if (!fi.Directory.Exists)
+            {
+                Directory.CreateDirectory(fi.Directory.FullName);
+            }
+            if (!File.Exists(SuperInstallConstants.LogPath))
+            {
+                File.Create(SuperInstallConstants.LogPath);
+                
+            }
+
+            Console.WriteLine($"[Caption] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
+            Console.WriteLine($"[Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinVersion)}");
+            Console.WriteLine($"[Primary] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinPrimary)}");
+            Console.WriteLine($"[OSArchitecture] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinArchitecture)}");
+            Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption)}");
+            Console.WriteLine($"[System Vendor] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMISystemQueryStry, SuperInstallConstants.WinManufacturer)}");
+            Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
 
             //var resu = Win32Dlls.GetManageObjValue(WMIRoot, WMIBIOSQueryStry, WinCaption);
             Console.WriteLine();
