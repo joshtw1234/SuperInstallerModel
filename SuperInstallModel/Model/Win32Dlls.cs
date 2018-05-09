@@ -78,4 +78,10 @@ namespace SuperInstallModel.Model
             return revStr;
         }
     }
+
+    struct PlatformInfo
+    {
+        public string SSID;
+        public string BIOSMinVer;
+    }
 }
