@@ -6,8 +6,6 @@ namespace SuperInstallModel.Model
 {
     class SuperInstallModel
     {
-        
-        
         public bool Initialize()
         {
             bool rev = false;
@@ -18,8 +16,8 @@ namespace SuperInstallModel.Model
             }
             if (!File.Exists(SuperInstallConstants.LogPath))
             {
-                File.Create(SuperInstallConstants.LogPath);
-                
+                FileStream fs = File.Create(SuperInstallConstants.LogPath);
+                fs.Close();
             }
 
             Console.WriteLine($"[Caption] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
@@ -30,8 +28,8 @@ namespace SuperInstallModel.Model
             Console.WriteLine($"[System Vendor] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMISystemQueryStry, SuperInstallConstants.WinManufacturer)}");
             Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
 
-            //var resu = Win32Dlls.GetManageObjValue(WMIRoot, WMIBIOSQueryStry, WinCaption);
             Console.WriteLine();
+
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
             {

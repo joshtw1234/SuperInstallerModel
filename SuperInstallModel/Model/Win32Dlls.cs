@@ -20,7 +20,7 @@ namespace SuperInstallModel.Model
         {
             try
             {
-                string strOutput = $"{DateTime.Now}={lines}";
+                string strOutput = $"[{DateTime.Now}]={lines}";
                 lock (locker)
                 {
                     using (FileStream file = new FileStream(logPath, FileMode.Append, FileAccess.Write, FileShare.Read))
@@ -70,12 +70,10 @@ namespace SuperInstallModel.Model
                     }
 
                 }
-
                 catch (Exception ex)
                 {
                     Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{ex.Message}\"");
                 }
-
             }
             return revStr;
         }
