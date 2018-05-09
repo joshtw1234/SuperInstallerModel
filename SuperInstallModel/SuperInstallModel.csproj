@@ -76,7 +76,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="PackageFiles\SPInstallInfo.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(ProjectDir)\PackageFiles\*.* $(ProjectDir)\$(OutDir) /Y/S/D/E</PostBuildEvent>
+  </PropertyGroup>
 </Project>
