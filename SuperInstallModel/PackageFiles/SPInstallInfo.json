@@ -43,7 +43,7 @@
     },
     //Pirates 1.0
     {
-      "platformSSID": 838F,
+      "platformSSID": "838F",
       "swMinVer": "F.16",
       "swexeName": null,
       "swexeCmd": "-s -a",
