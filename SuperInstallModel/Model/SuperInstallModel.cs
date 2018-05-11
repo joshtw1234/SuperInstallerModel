@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -6,6 +7,7 @@ namespace SuperInstallModel.Model
 {
     class SuperInstallModel
     {
+        SuperInstallInfo spInstallInfo;
         public bool Initialize()
         {
             bool rev = false;
@@ -19,6 +21,8 @@ namespace SuperInstallModel.Model
                 FileStream fs = File.Create(SuperInstallConstants.LogPath);
                 fs.Close();
             }
+            string dataStr = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "SPInstallInfo.json"));
+            var result = JsonConvert.DeserializeObject<SuperInstallInfo>(dataStr);
 
             Console.WriteLine($"[Caption] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
             Console.WriteLine($"[Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinVersion)}");

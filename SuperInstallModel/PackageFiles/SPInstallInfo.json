@@ -1,0 +1,86 @@
+{
+  "installResult": 0,
+  "platformLst": [
+    //Marlins 1.0
+    {
+      "platformSSID": 8392,
+      "swMinVer": "F.16",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    {
+      "platformSSID": 8393,
+      "swMinVer": "F.16",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    {
+      "platformSSID": 8394,
+      "swMinVer": "F.16",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    //Pirates 1.0
+    {
+      "platformSSID": 838F,
+      "swMinVer": "F.16",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    {
+      "platformSSID": 8390,
+      "swMinVer": "F.16",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    {
+      "platformSSID": 8394,
+      "swMinVer": "F.16",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    }
+
+  ]
+}

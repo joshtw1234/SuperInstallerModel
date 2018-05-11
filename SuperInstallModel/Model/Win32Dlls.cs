@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Management;
 using System.Runtime.InteropServices;
@@ -79,9 +80,29 @@ namespace SuperInstallModel.Model
         }
     }
 
-    struct PlatformInfo
+    public enum InstallStates
     {
-        public string SSID;
-        public string BIOSMinVer;
+        None,
+        Processing,
+        Done
+    }
+
+    public class SWInfo
+    {
+        public string SWMinVer;
+        public string SWEXEName;
+        public string SWEXECmd;
+    }
+
+    public class PlatformInfo : SWInfo
+    {
+        public string PlatformSSID;
+        public List<SWInfo> SWList;
+    }
+
+    public class SuperInstallInfo
+    {
+        public InstallStates InstallResult;
+        public List<PlatformInfo> PlatformLst;
     }
 }
