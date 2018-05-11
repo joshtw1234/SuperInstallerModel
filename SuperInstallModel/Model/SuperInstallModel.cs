@@ -41,6 +41,12 @@ namespace SuperInstallModel.Model
                 pwMsg = "Power code off";
             }
             Console.WriteLine($"{pwMsg}");
+            pwMsg = "I am administrator";
+            if (!Win32Dlls.IsElevated)
+            {
+                pwMsg = "I am not administrator";
+            }
+            Console.WriteLine($"{pwMsg}");
             Console.WriteLine();
 
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;

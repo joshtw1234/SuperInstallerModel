@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Management;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 
 namespace SuperInstallModel.Model
 {
@@ -71,6 +72,14 @@ namespace SuperInstallModel.Model
         [DllImport("kernel32", EntryPoint = "GetSystemPowerStatus")]
         public static extern void GetSystemPowerStatus(ref SYSTEM_POWER_STATUS lpSystemPowerStatus);
 
+        public static bool IsElevated
+        {
+            get
+            {
+                return new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+            }
+        }
+
         private static object locker = new Object();
         public static void Logger(string logPath, string lines)
         {
@@ -101,11 +110,11 @@ namespace SuperInstallModel.Model
         {
             object revStr = null;
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(queryScope, queryStr);
-
-            foreach (ManagementObject wmi in searcher.Get())
+            try
             {
-                try
+                foreach (ManagementObject wmi in searcher.Get())
                 {
+
                     revStr = wmi.GetPropertyValue(propertyStr);
 
                     if (null != revStr)
@@ -124,12 +133,11 @@ namespace SuperInstallModel.Model
                     {
                         Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"Not Found!!\"");
                     }
-
                 }
-                catch (Exception ex)
-                {
-                    Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{ex.Message}\"");
-                }
+            }
+            catch (Exception ex)
+            {
+                Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{ex.Message}\"");
             }
             return revStr;
         }
