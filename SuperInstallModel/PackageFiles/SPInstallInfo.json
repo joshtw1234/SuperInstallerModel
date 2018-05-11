@@ -1,41 +1,50 @@
 {
-  "installResult": 0,
+  "superInstallStates": 0,
   "platformLst": [
     //Marlins 1.0
     {
+      "swInstallStates": 0,
       "platformSSID": 8392,
-      "swMinVer": "F.16",
+      "swBMinVer": "B.26",
+      "swFMinVer": "F.16",
       "swexeName": null,
       "swexeCmd": "-s -a",
       "swList": [
         {
-          "swMinVer": null,
+          "swBMinVer": null,
+          "swFMinVer": null,
           "swexeName": "InstallSDK.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "swInstallStates": 0,
       "platformSSID": 8393,
-      "swMinVer": "F.16",
+      "swBMinVer": "B.26",
+      "swFMinVer": "F.16",
       "swexeName": null,
       "swexeCmd": "-s -a",
       "swList": [
         {
-          "swMinVer": null,
+          "swBMinVer": null,
+          "swFMinVer": null,
           "swexeName": "InstallSDK.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "swInstallStates": 0,
       "platformSSID": 8394,
-      "swMinVer": "F.16",
+      "swBMinVer": "B.26",
+      "swFMinVer": "F.16",
       "swexeName": null,
       "swexeCmd": "-s -a",
       "swList": [
         {
-          "swMinVer": null,
+          "swBMinVer": null,
+          "swFMinVer": null,
           "swexeName": "InstallSDK.bat",
           "swexeCmd": null
         }
@@ -43,39 +52,199 @@
     },
     //Pirates 1.0
     {
+      "swInstallStates": 0,
       "platformSSID": "838F",
-      "swMinVer": "F.16",
+      "swBMinVer": "B.26",
+      "swFMinVer": "F.16",
       "swexeName": null,
       "swexeCmd": "-s -a",
       "swList": [
         {
-          "swMinVer": null,
+          "swBMinVer": null,
+          "swFMinVer": null,
           "swexeName": "InstallSDK.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "swInstallStates": 0,
       "platformSSID": 8390,
-      "swMinVer": "F.16",
+      "swBMinVer": "B.26",
+      "swFMinVer": "F.16",
       "swexeName": null,
       "swexeCmd": "-s -a",
       "swList": [
         {
-          "swMinVer": null,
+          "swBMinVer": null,
+          "swFMinVer": null,
           "swexeName": "InstallSDK.bat",
           "swexeCmd": null
         }
       ]
     },
     {
-      "platformSSID": 8394,
-      "swMinVer": "F.16",
+      "swInstallStates": 0,
+      "platformSSID": 8391,
+      "swBMinVer": "B.26",
+      "swFMinVer": "F.16",
       "swexeName": null,
       "swexeCmd": "-s -a",
       "swList": [
         {
-          "swMinVer": null,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    //Dragons 1.0
+    {
+      "swInstallStates": 0,
+      "platformSSID": "83A5",
+      "swBMinVer": "B.37",
+      "swFMinVer": "F.15",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    {
+      "swInstallStates": 0,
+      "platformSSID": "83A6",
+      "swBMinVer": "B.37",
+      "swFMinVer": "F.15",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    //Hurricane-I 1.0
+    {
+      "swInstallStates": 0,
+      "platformSSID": 8307,
+      "swBMinVer": "B.80",
+      "swFMinVer": null,
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    {
+      "swInstallStates": 0,
+      "platformSSID": 8308,
+      "swBMinVer": "B.80",
+      "swFMinVer": null,
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    //Hurricane-A 1.0
+    {
+      "swInstallStates": 0,
+      "platformSSID": 8309,
+      "swBMinVer": null,
+      "swFMinVer": "F.20",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    //Hurricane-I 1.1
+    {
+      "swInstallStates": 0,
+      "platformSSID": 8437,
+      "swBMinVer": null,
+      "swFMinVer": "F.20",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    //Hurricane-A 1.1
+    {
+      "swInstallStates": 0,
+      "platformSSID": "84F6",
+      "swBMinVer": null,
+      "swFMinVer": "F.10",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    //Typhon 1.2
+    {
+      "swInstallStates": 0,
+      "platformSSID": "839F",
+      "swBMinVer": "B.32",
+      "swFMinVer": "F.20",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "InstallSDK.bat",
+          "swexeCmd": null
+        }
+      ]
+    },
+    //PerseusC 1.0
+    {
+      "swInstallStates": 0,
+      "platformSSID": 8375,
+      "swBMinVer": null,
+      "swFMinVer": "F.20",
+      "swexeName": null,
+      "swexeCmd": "-s -a",
+      "swList": [
+        {
+          "swBMinVer": null,
+          "swFMinVer": null,
           "swexeName": "InstallSDK.bat",
           "swexeCmd": null
         }

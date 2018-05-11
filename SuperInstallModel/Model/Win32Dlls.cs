@@ -152,7 +152,9 @@ namespace SuperInstallModel.Model
 
     public class SWInfo
     {
-        public string SWMinVer;
+        public InstallStates SWInstallStates;
+        public string SWBMinVer;
+        public string SWFMinVer;
         public string SWEXEName;
         public string SWEXECmd;
     }
@@ -165,7 +167,7 @@ namespace SuperInstallModel.Model
 
     public class SuperInstallInfo
     {
-        public InstallStates InstallResult;
+        public InstallStates SuperInstallStates;
         public List<PlatformInfo> PlatformLst;
     }
 }
