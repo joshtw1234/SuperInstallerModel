@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace SuperInstallModel.Model
 {
+#if false
     class MSFWTableHelper
     {
         int SMBIOSMajorV = 0, SMBIOSMinorV = 0;
@@ -183,4 +184,5 @@ namespace SuperInstallModel.Model
             return null;
         }
     }
+#endif
 }

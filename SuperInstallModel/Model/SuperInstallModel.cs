@@ -48,7 +48,7 @@ namespace SuperInstallModel.Model
             }
             Console.WriteLine($"{pwMsg}");
             Console.WriteLine();
-
+#if false
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
             {
@@ -67,6 +67,7 @@ namespace SuperInstallModel.Model
                 Console.WriteLine($"[Proc PartNumber] {((CSMBIOSType4)dicSMBIOS[4]).PartNumber} [Proc AssetTag] {((CSMBIOSType4)dicSMBIOS[4]).AssetTag} [Proc SerialNum] {((CSMBIOSType4)dicSMBIOS[4]).SerialNumber}");
                 rev = true;
             }
+#endif
             return rev;
         }
 
