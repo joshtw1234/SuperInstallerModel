@@ -41,8 +41,9 @@ namespace SuperInstallModel.Model
         /// <param name="typeIdx"></param>
         /// <param name="rawSMBIOSTable"></param>
         /// <returns></returns>
-        private byte[] GetSMBIOSTypeRawByte(int typeIdx, byte[] rawSMBIOSTable)
+        private byte[] GetSMBIOSTypeRawByte(int typeIdx)
         {
+            byte[] rawSMBIOSTable = (byte[])Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMISMBIOSQueryStr, SuperInstallConstants.WinSMBIOS);
             byte[] typeRawByte;
             int rawType = rawSMBIOSTable[0];
             int rawFormatLen = rawSMBIOSTable[1];
@@ -79,10 +80,10 @@ namespace SuperInstallModel.Model
         /// <param name="smBIOSType"></param>
         /// <param name="typeStrings"></param>
         /// <returns></returns>
-        protected object GetSMBIOSTypeData(int typeIdx, byte[] rawSMBIOS, Type smBIOSType, out string[] typeStrings)
+        protected object GetSMBIOSTypeData(int typeIdx, Type smBIOSType, out string[] typeStrings)
         {
             //Get SMBIOS type data
-            byte[] typeRawByte = GetSMBIOSTypeRawByte(typeIdx, rawSMBIOS);
+            byte[] typeRawByte = GetSMBIOSTypeRawByte(typeIdx);
             object tmpObj = null;
             //Turn the byte to structure
             GCHandle gch = GCHandle.Alloc(typeRawByte, GCHandleType.Pinned);
@@ -132,10 +133,10 @@ namespace SuperInstallModel.Model
         /// Main constructor
         /// </summary>
         /// <param name="rawSMBIOS"></param>
-        public SMBIOSType0(byte[] rawSMBIOS, out string[] typeStrs)
+        public SMBIOSType0(out string[] typeStrs)
         {
             const int typeIdx = 0;
-            object typeObj = this.GetSMBIOSTypeData(typeIdx, rawSMBIOS, this.GetType(), out typeStrs);
+            object typeObj = this.GetSMBIOSTypeData(typeIdx, this.GetType(), out typeStrs);
             //Assign property
             this.Type = (typeObj as SMBIOSType0).Type;
             this.Length = (typeObj as SMBIOSType0).Length;
@@ -189,10 +190,10 @@ namespace SuperInstallModel.Model
         /// Main constructor
         /// </summary>
         /// <param name="rawSMBIOS"></param>
-        public SMBIOSType2(byte[] rawSMBIOS, out string[] typeStrs)
+        public SMBIOSType2(out string[] typeStrs)
         {
             const int typeIdx = 2;
-            object typeObj = this.GetSMBIOSTypeData(typeIdx, rawSMBIOS, this.GetType(), out typeStrs);
+            object typeObj = this.GetSMBIOSTypeData(typeIdx, this.GetType(), out typeStrs);
             //Assign property
             this.Type = (typeObj as SMBIOSType2).Type;
             this.Length = (typeObj as SMBIOSType2).Length;
@@ -237,10 +238,10 @@ namespace SuperInstallModel.Model
         /// Construct
         /// </summary>
         /// <param name="rawSMBIOSTable"></param>
-        public CSMBIOSType0(byte[] rawSMBIOSTable)
+        public CSMBIOSType0()
         {
             string[] typeStrs = null;
-            this.RawSMBIOSType = new SMBIOSType0(rawSMBIOSTable, out typeStrs);
+            this.RawSMBIOSType = new SMBIOSType0(out typeStrs);
             //Assign string
             Vendor = typeStrs[(this.RawSMBIOSType as SMBIOSType0).byVendor - 1];
             BIOSVersion = typeStrs[(this.RawSMBIOSType as SMBIOSType0).byBiosVersion - 1];
@@ -263,10 +264,10 @@ namespace SuperInstallModel.Model
         /// Construct
         /// </summary>
         /// <param name="rawSMBIOSTable"></param>
-        public CSMBIOSType2(byte[] rawSMBIOSTable)
+        public CSMBIOSType2()
         {
             string[] typeStrs = null;
-            this.RawSMBIOSType = new SMBIOSType2(rawSMBIOSTable, out typeStrs);
+            this.RawSMBIOSType = new SMBIOSType2(out typeStrs);
             //Assign string
             Manufacturer = typeStrs[(this.RawSMBIOSType as SMBIOSType2).byManufacturer - 1];
             Product = typeStrs[(this.RawSMBIOSType as SMBIOSType2).byProduct - 1];

@@ -34,9 +34,9 @@ namespace SuperInstallModel.Model
             //Console.WriteLine($"[System ID] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIHPQueryStr, SuperInstallConstants.WinValue)}");
             //Start process info
             //Get SSID
-            byte[] resuSMBIOSRaw = (byte[])Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMISMBIOSQueryStr, SuperInstallConstants.WinSMBIOS);
-            CSMBIOSType2 smbios2 = new CSMBIOSType2(resuSMBIOSRaw);
-            CSMBIOSType0 smbios0 = new CSMBIOSType0(resuSMBIOSRaw);
+            
+            CSMBIOSType2 smbios2 = new CSMBIOSType2();
+            CSMBIOSType0 smbios0 = new CSMBIOSType0();
             Console.WriteLine($"[System ID] {smbios2.Product}");
             Win32Dlls.SYSTEM_POWER_STATUS SysPower = new Win32Dlls.SYSTEM_POWER_STATUS();
             Win32Dlls.GetSystemPowerStatus(ref SysPower);
