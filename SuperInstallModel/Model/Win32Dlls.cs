@@ -143,7 +143,7 @@ namespace SuperInstallModel.Model
         }
     }
 
-    public enum InstallStates
+    public enum InstallStage
     {
         None,
         Processing,
@@ -152,7 +152,7 @@ namespace SuperInstallModel.Model
 
     public class SWInfo
     {
-        public InstallStates SWInstallStates;
+        public InstallStage SWInstallStates;
         public string SWBMinVer;
         public string SWFMinVer;
         public string SWEXEName;
@@ -167,7 +167,7 @@ namespace SuperInstallModel.Model
 
     public class SuperInstallInfo
     {
-        public InstallStates SuperInstallStates;
+        public InstallStage SuperInstallStates;
         public List<PlatformInfo> PlatformLst;
     }
 }
