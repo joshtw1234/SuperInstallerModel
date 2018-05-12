@@ -12,7 +12,8 @@ namespace SuperInstallModel.Model
 
         #region MyRegion
         //Root path
-        public const string WMIRoot = "ROOT\\CIMV2";
+        public const string WMICIMRoot = "ROOT\\CIMV2";
+        public const string WMIRoot = "ROOT\\WMI";
         public const string WMIHPRoot = "ROOT\\HP\\InstrumentedBIOS";
         //Query strings
         public const string WMIBIOSQueryStry = "SELECT * FROM Win32_BIOS";
@@ -20,6 +21,7 @@ namespace SuperInstallModel.Model
         public const string WMICPUQueryStry = "SELECT * FROM Win32_Processor";
         public const string WMIQueryStr = "SELECT * FROM Win32_OperatingSystem";
         public const string WMIHPQueryStr = "SELECT * FROM HP_BIOSString";
+        public const string WMISMBIOSQueryStr = "SELECT * FROM MSSmBios_RawSMBiosTables";
         //Property string for Query
         public const string WinCaption = "Caption";
         public const string WinVersion = "Version";
@@ -28,6 +30,7 @@ namespace SuperInstallModel.Model
         public const string WinManufacturer = "Manufacturer";
         public const string WinName = "Name";
         public const string WinValue = "Value";
+        public const string WinSMBIOS = "SMBiosData";
         #endregion
     }
 }

@@ -24,15 +24,20 @@ namespace SuperInstallModel.Model
             string dataStr = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "SPInstallInfo.json"));
             var result = JsonConvert.DeserializeObject<SuperInstallInfo>(dataStr);
 
-            Console.WriteLine($"[Caption] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
-            Console.WriteLine($"[Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinVersion)}");
-            Console.WriteLine($"[Primary] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinPrimary)}");
-            Console.WriteLine($"[OSArchitecture] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinArchitecture)}");
-            Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption)}");
-            Console.WriteLine($"[System Vendor] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMISystemQueryStry, SuperInstallConstants.WinManufacturer)}");
-            Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
-            Console.WriteLine($"[System ID] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIHPRoot, SuperInstallConstants.WMIHPQueryStr, SuperInstallConstants.WinValue)}");
-
+            Console.WriteLine($"[Caption] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
+            Console.WriteLine($"[Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinVersion)}");
+            Console.WriteLine($"[Primary] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinPrimary)}");
+            Console.WriteLine($"[OSArchitecture] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinArchitecture)}");
+            Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption)}");
+            Console.WriteLine($"[System Vendor] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMISystemQueryStry, SuperInstallConstants.WinManufacturer)}");
+            Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
+            //Console.WriteLine($"[System ID] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIHPQueryStr, SuperInstallConstants.WinValue)}");
+            //Start process info
+            //Get SSID
+            byte[] resuSMBIOSRaw = (byte[])Win32Dlls.GetManageObjValue(SuperInstallConstants.WMIRoot, SuperInstallConstants.WMISMBIOSQueryStr, SuperInstallConstants.WinSMBIOS);
+            CSMBIOSType2 smbios2 = new CSMBIOSType2(resuSMBIOSRaw);
+            CSMBIOSType0 smbios0 = new CSMBIOSType0(resuSMBIOSRaw);
+            Console.WriteLine($"[System ID] {smbios2.Product}");
             Win32Dlls.SYSTEM_POWER_STATUS SysPower = new Win32Dlls.SYSTEM_POWER_STATUS();
             Win32Dlls.GetSystemPowerStatus(ref SysPower);
             string pwMsg = "Power code on";
