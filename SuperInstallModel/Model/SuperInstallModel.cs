@@ -8,9 +8,11 @@ namespace SuperInstallModel.Model
 {
     class SuperInstallModel
     {
+        PlatformInfo platfomInfo;
         private void ModelLogger(string msg)
         {
             Win32Dlls.Logger(SuperInstallConstants.LogPath, msg);
+            Console.WriteLine(msg);
         }
         public bool Initialize()
         {
@@ -54,14 +56,14 @@ namespace SuperInstallModel.Model
             string logMsg = "IsSupporPlatform false";
             string jsonStr = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), SuperInstallConstants.SuperInstallJSONFile));
             var resultSPInstall = JsonConvert.DeserializeObject<SuperInstallInfo>(jsonStr);
-            var InstallInfo = resultSPInstall.PlatformLst.FirstOrDefault(x => x.PlatformSSID.Equals(smbios2.Product));
-            if (null != InstallInfo)
+            platfomInfo = resultSPInstall.PlatformLst.FirstOrDefault(x => x.PlatformSSID.Equals(smbios2.Product));
+            if (null != platfomInfo)
             {
                 //IsSupporPlatform = true;
                 logMsg = "IsSupporPlatform true";
             }
             ModelLogger(logMsg);
-            Console.WriteLine(logMsg);
+            
             Console.WriteLine();
 #if false
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
@@ -84,6 +86,17 @@ namespace SuperInstallModel.Model
             }
 #endif
             return rev;
+        }
+
+        public void SetStartInstall()
+        {
+            string installLog = "Install true";
+            int rev = Win32Dlls.RunProcess(platfomInfo.SWEXEName, platfomInfo.SWEXECmd);
+            if (rev != 0)
+            {
+                installLog = "Install False";
+            }
+            ModelLogger(installLog);
         }
 
         
