@@ -17,7 +17,7 @@ namespace SuperInstallModel
             {
                 revMsg = "Initial Failed";
             }
-            Console.WriteLine(revMsg);
+            //Console.WriteLine(revMsg);
             Console.ReadLine();
         }
     }

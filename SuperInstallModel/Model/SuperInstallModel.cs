@@ -24,34 +24,31 @@ namespace SuperInstallModel.Model
             string dataStr = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "SPInstallInfo.json"));
             var result = JsonConvert.DeserializeObject<SuperInstallInfo>(dataStr);
 
-            Console.WriteLine($"[Caption] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
-            Console.WriteLine($"[Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinVersion)}");
-            Console.WriteLine($"[Primary] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinPrimary)}");
-            Console.WriteLine($"[OSArchitecture] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinArchitecture)}");
-            Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption)}");
+            Console.WriteLine($"[Windows Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
+            Console.WriteLine($"[Windows Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinVersion)}");
+            //Console.WriteLine($"[Primary] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinPrimary)}");
+            Console.WriteLine($"[Windows OS] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinArchitecture)}");
             Console.WriteLine($"[System Vendor] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMISystemQueryStry, SuperInstallConstants.WinManufacturer)}");
-            Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
-            //Console.WriteLine($"[System ID] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIHPQueryStr, SuperInstallConstants.WinValue)}");
-            //Start process info
-            //Get SSID
-            
             CSMBIOSType2 smbios2 = new CSMBIOSType2();
             CSMBIOSType0 smbios0 = new CSMBIOSType0();
             Console.WriteLine($"[System ID] {smbios2.Product}");
+            Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption)}");
+            Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
+            
             Win32Dlls.SYSTEM_POWER_STATUS SysPower = new Win32Dlls.SYSTEM_POWER_STATUS();
             Win32Dlls.GetSystemPowerStatus(ref SysPower);
-            string pwMsg = "Power code on";
+            string pwMsg = "Power Connected";
             if (!Convert.ToBoolean(SysPower.ACLineStatus))
             {
-                pwMsg = "Power code off";
+                pwMsg = "Power not Connected";
             }
-            Console.WriteLine($"{pwMsg}");
-            pwMsg = "I am administrator";
+            Console.WriteLine($"[Power connect] {pwMsg}");
+            pwMsg = "Administrator";
             if (!Win32Dlls.IsElevated)
             {
-                pwMsg = "I am not administrator";
+                pwMsg = "Not Administrator";
             }
-            Console.WriteLine($"{pwMsg}");
+            Console.WriteLine($"[App privilege] {pwMsg}");
             Console.WriteLine();
 #if false
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
