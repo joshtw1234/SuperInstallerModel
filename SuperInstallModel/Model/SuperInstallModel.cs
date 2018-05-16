@@ -132,9 +132,13 @@ namespace SuperInstallModel.Model
                     ModelLogger(installLog);
                     int rev = Win32Dlls.RunProcess(sw.SWEXEName, (sw.SWEXECmd == null? string.Empty : sw.SWEXECmd));
                     installLog = $"Install rev {rev}";
+                    sw.SWInstallStates = InstallStage.Done;
                 }
                 ModelLogger(installLog);
             }
+
+            string output = JsonConvert.SerializeObject(platfomInfo);
+            File.WriteAllText(@".\OCCInstallResult.log", output);
 
             string scPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "OCCSPInstall.lnk");
             installLog = $"Delete {scPath} false";
