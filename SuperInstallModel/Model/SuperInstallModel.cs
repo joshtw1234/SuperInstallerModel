@@ -80,7 +80,6 @@ namespace SuperInstallModel.Model
                 logMsg = "BIOS True";
             }
             ModelLogger($"[{logMsg}] BIOS ver {biosVer} {platfomInfo.SWInstallStates}");
-            //Console.WriteLine();
 #if false
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
@@ -109,6 +108,7 @@ namespace SuperInstallModel.Model
             string installLog = $"BIOS Install {platfomInfo.SWInstallStates}";
             if (platfomInfo.SWInstallStates == InstallStage.None)
             {
+                Win32Dlls.CreateShortcut("OCCSPInstall", Environment.GetFolderPath(Environment.SpecialFolder.Startup), System.IO.Path.Combine(Environment.CurrentDirectory, AppDomain.CurrentDomain.FriendlyName), "Test", string.Empty);
                 installLog = "BIOS Start Install";
                 ModelLogger(installLog);
                 int rev = Win32Dlls.RunProcess(platfomInfo.SWEXEName, platfomInfo.SWEXECmd);

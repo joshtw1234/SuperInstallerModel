@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IWshRuntimeLibrary;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Management;
@@ -88,6 +89,21 @@ namespace SuperInstallModel.Model
             process.Start();
             process.WaitForExit();
             return process.ExitCode;
+        }
+
+        public static void CreateShortcut(string shortcutName, string shortcutPath, string targetFileLocation, string shortcutDesc, string shortcutIcon)
+        {
+            string shortcutLocation = System.IO.Path.Combine(shortcutPath, shortcutName + ".lnk");
+            WshShell shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
+
+            shortcut.Description = shortcutDesc;   // The description of the shortcut
+            if (!string.IsNullOrEmpty(shortcutIcon))
+            {
+                shortcut.IconLocation = shortcutIcon;           // The icon of the shortcut
+            }
+            shortcut.TargetPath = targetFileLocation;                 // The path of the file that will launch when the shortcut is run
+            shortcut.Save();                                    // Save the shortcut
         }
     }
 
