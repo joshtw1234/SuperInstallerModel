@@ -135,6 +135,15 @@ namespace SuperInstallModel.Model
                 }
                 ModelLogger(installLog);
             }
+
+            string scPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "OCCSPInstall.lnk");
+            installLog = $"Delete {scPath} false";
+            if (File.Exists(scPath))
+            {
+                installLog = $"Delete {scPath} true";
+                File.Delete(scPath);
+            }
+            ModelLogger(installLog);
         }
 
         

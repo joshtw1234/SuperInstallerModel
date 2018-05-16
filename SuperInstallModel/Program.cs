@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace SuperInstallModel
 {
@@ -6,7 +7,6 @@ namespace SuperInstallModel
     {
         static void Main(string[] args)
         {
-
             string revMsg = "Initial Success";
             Model.SuperInstallModel spModel = new Model.SuperInstallModel();
             if (!spModel.Initialize())

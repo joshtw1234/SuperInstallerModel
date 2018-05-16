@@ -296,31 +296,6 @@
         }
       ]
     },
-    //Hurricane-A 1.1
-    {
-      "swInstallStates": 0,
-      "platformSSID": "84F6",
-      "swBMinVer": null,
-      "swFMinVer": "F.10",
-      "swexeName": ".\\PackageData\\BIOS\\84F6\\838FB25.EXE",
-      "swexeCmd": "-s -a",
-      "swList": [
-        {
-          "swInstallStates": 0,
-          "swBMinVer": null,
-          "swFMinVer": null,
-          "swexeName": ".\\PackageData\\AppData\\SDK105\\Install.cmd",
-          "swexeCmd": null
-        },
-        {
-          "swInstallStates": 0,
-          "swBMinVer": null,
-          "swFMinVer": null,
-          "swexeName": ".\\PackageData\\AppData\\SystemEvent\\Install.bat",
-          "swexeCmd": null
-        }
-      ]
-    },
     //Typhon 1.2
     {
       "swInstallStates": 0,
