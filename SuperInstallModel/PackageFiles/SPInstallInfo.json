@@ -39,6 +39,20 @@
           "swInstallStates": 0,
           "swBMinVer": null,
           "swFMinVer": null,
+          "swexeName": "Pnputil",
+          "swexeCmd": "-i -a .\\PackageData\\AppData\\OMENCap211\\hpomencustomcapcomp.inf"
+        },
+        {
+          "swInstallStates": 0,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "Pnputil",
+          "swexeCmd": "-i -a .\\PackageData\\AppData\\SYSCap444\\hpcustomcapcomp.inf"
+        },
+        {
+          "swInstallStates": 0,
+          "swBMinVer": null,
+          "swFMinVer": null,
           "swexeName": ".\\PackageData\\AppData\\SDK105\\Install.cmd",
           "swexeCmd": null
         },
