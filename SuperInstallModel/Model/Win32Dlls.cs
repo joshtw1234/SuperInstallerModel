@@ -66,22 +66,8 @@ namespace SuperInstallModel.Model
             {
                 foreach (ManagementObject wmi in searcher.Get())
                 {
-
                     revStr = wmi.GetPropertyValue(propertyStr);
-
-                    if (null != revStr)
-                    {
-                        if (revStr is string[])
-                        {
-                            Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{((string[])revStr)[0].ToString()}\"");
-                        }
-                        else
-                        {
-                            Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{revStr.ToString()}\"");
-                        }
-                        return revStr;
-                    }
-                    else
+                    if (null == revStr)
                     {
                         Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"Not Found!!\"");
                     }
@@ -92,6 +78,16 @@ namespace SuperInstallModel.Model
                 Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{ex.Message}\"");
             }
             return revStr;
+        }
+
+        public static int RunProcess(string appName, string arguments)
+        {
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = appName;
+            process.StartInfo.Arguments = arguments;
+            process.Start();
+            process.WaitForExit();
+            return process.ExitCode;
         }
     }
 
@@ -167,7 +163,17 @@ namespace SuperInstallModel.Model
 
     public class SuperInstallInfo
     {
+        /// <summary>
+        /// The test mode
+        /// </summary>
+        public bool IsBetaMode;
+        /// <summary>
+        /// The super install states.
+        /// </summary>
         public InstallStage SuperInstallStates;
+        /// <summary>
+        /// The list of platform info
+        /// </summary>
         public List<PlatformInfo> PlatformLst;
     }
 }

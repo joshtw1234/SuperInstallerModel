@@ -2,12 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SuperInstallModel.Model
 {
     class SuperInstallModel
     {
-        SuperInstallInfo spInstallInfo;
+        private void ModelLogger(string msg)
+        {
+            Win32Dlls.Logger(SuperInstallConstants.LogPath, msg);
+        }
         public bool Initialize()
         {
             bool rev = false;
@@ -21,8 +25,6 @@ namespace SuperInstallModel.Model
                 FileStream fs = File.Create(SuperInstallConstants.LogPath);
                 fs.Close();
             }
-            string dataStr = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "SPInstallInfo.json"));
-            var result = JsonConvert.DeserializeObject<SuperInstallInfo>(dataStr);
 
             Console.WriteLine($"[Windows Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
             Console.WriteLine($"[Windows Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinVersion)}");
@@ -50,6 +52,17 @@ namespace SuperInstallModel.Model
             }
             Console.WriteLine($"[App privilege] {pwMsg}");
             Console.WriteLine();
+
+            string logMsg = "IsSupporPlatform false";
+            string jsonStr = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), SuperInstallConstants.SuperInstallJSONFile));
+            var resultSPInstall = JsonConvert.DeserializeObject<SuperInstallInfo>(jsonStr);
+            var InstallInfo = resultSPInstall.PlatformLst.FirstOrDefault(x => x.PlatformSSID.Equals(smbios2.Product));
+            if (null != InstallInfo)
+            {
+                //IsSupporPlatform = true;
+                logMsg = "IsSupporPlatform true";
+            }
+            ModelLogger(logMsg);
 #if false
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)

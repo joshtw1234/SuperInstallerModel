@@ -8,7 +8,16 @@ namespace SuperInstallModel.Model
 {
     class SuperInstallConstants
     {
-        public const string LogPath = @"C:\SWSetup\SuperInstallerLog.log";
+        public const string LegacyOmenSWKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{B13CB0A1-4411-404C-A7DB-BB1441B089EC}";
+
+        public const string FlagPath = @"C:\system.sav\flags\OCCSuperinstaller.flg";
+
+        public const string LogPath = @".\OCCSuperInstaller.log";
+
+        /// <summary>
+        /// The file name of JSON file
+        /// </summary>
+        public const string SuperInstallJSONFile = "SPInstallInfo.json";
 
         #region MyRegion
         //Root path
