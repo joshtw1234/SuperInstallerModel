@@ -51,8 +51,6 @@ namespace SuperInstallModel.Model
                 pwMsg = "Not Administrator";
             }
             Console.WriteLine($"[App privilege] {pwMsg}");
-            Console.WriteLine();
-
             string logMsg = "IsSupporPlatform false";
             string jsonStr = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), SuperInstallConstants.SuperInstallJSONFile));
             var resultSPInstall = JsonConvert.DeserializeObject<SuperInstallInfo>(jsonStr);
@@ -63,6 +61,8 @@ namespace SuperInstallModel.Model
                 logMsg = "IsSupporPlatform true";
             }
             ModelLogger(logMsg);
+            Console.WriteLine(logMsg);
+            Console.WriteLine();
 #if false
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
