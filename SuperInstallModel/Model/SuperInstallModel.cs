@@ -35,7 +35,7 @@ namespace SuperInstallModel.Model
             Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption)}");
             Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
             
-            Win32Dlls.SYSTEM_POWER_STATUS SysPower = new Win32Dlls.SYSTEM_POWER_STATUS();
+            SYSTEM_POWER_STATUS SysPower = new SYSTEM_POWER_STATUS();
             Win32Dlls.GetSystemPowerStatus(ref SysPower);
             string pwMsg = "Power Connected";
             if (!Convert.ToBoolean(SysPower.ACLineStatus))
