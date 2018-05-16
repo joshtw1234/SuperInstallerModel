@@ -36,7 +36,8 @@ namespace SuperInstallModel.Model
             CSMBIOSType2 smbios2 = new CSMBIOSType2();
             CSMBIOSType0 smbios0 = new CSMBIOSType0();
             Console.WriteLine($"[System ID] {smbios2.Product}");
-            Console.WriteLine($"[BIOS Version] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption)}");
+            string biosVer = Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption).ToString();
+            Console.WriteLine($"[BIOS Version] {biosVer}");
             Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
             
             SYSTEM_POWER_STATUS SysPower = new SYSTEM_POWER_STATUS();
@@ -59,12 +60,27 @@ namespace SuperInstallModel.Model
             platfomInfo = resultSPInstall.PlatformLst.FirstOrDefault(x => x.PlatformSSID.Equals(smbios2.Product));
             if (null != platfomInfo)
             {
-                //IsSupporPlatform = true;
                 logMsg = "IsSupporPlatform true";
             }
             ModelLogger(logMsg);
-            
-            Console.WriteLine();
+            string cmpBIOSstr = SuperInstallConstants.BIOSFormalHeader;
+            int compareVersion = int.Parse(platfomInfo.SWFMinVer.Split('.').Last());
+            if (resultSPInstall.IsBetaMode)
+            {
+                cmpBIOSstr = SuperInstallConstants.BIOSBetaHeader;
+                compareVersion = int.Parse(platfomInfo.SWBMinVer.Split('.').Last());
+            }
+            //Check BIOS install stage
+            logMsg = "BIOS False";
+            string[] curtBiosInfo = biosVer.Split('.');
+            if (curtBiosInfo.Count() == 2 && curtBiosInfo.First().Equals(cmpBIOSstr) &&
+                int.Parse(curtBiosInfo.Last()) >= compareVersion)
+            {
+                platfomInfo.SWInstallStates = InstallStage.Done;
+                logMsg = "BIOS True";
+            }
+            ModelLogger($"[{logMsg}] BIOS ver {biosVer} {platfomInfo.SWInstallStates}");
+            //Console.WriteLine();
 #if false
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
@@ -90,13 +106,35 @@ namespace SuperInstallModel.Model
 
         public void SetStartInstall()
         {
-            string installLog = "Install true";
-            int rev = Win32Dlls.RunProcess(platfomInfo.SWEXEName, platfomInfo.SWEXECmd);
-            if (rev != 0)
+            string installLog = $"BIOS Install {platfomInfo.SWInstallStates}";
+            if (platfomInfo.SWInstallStates == InstallStage.None)
             {
-                installLog = "Install False";
+                installLog = "BIOS Start Install";
+                ModelLogger(installLog);
+                int rev = Win32Dlls.RunProcess(platfomInfo.SWEXEName, platfomInfo.SWEXECmd);
+                if (rev != 0)
+                {
+                    installLog = $"{installLog} {rev}";
+                }
+                ModelLogger(installLog);
+                rev = Win32Dlls.RunProcess(SuperInstallConstants.CmdShutdown, SuperInstallConstants.CmdShutdownArgs);
+                installLog = $"Shutdown {rev}";
+                ModelLogger(installLog);
+                return;
             }
             ModelLogger(installLog);
+            foreach(SWInfo sw in platfomInfo.SWList)
+            {
+                installLog = $"install {sw.SWEXEName} {sw.SWInstallStates}";
+                if (sw.SWInstallStates == InstallStage.None)
+                {
+                    installLog = $"install {sw.SWEXEName}";
+                    ModelLogger(installLog);
+                    int rev = Win32Dlls.RunProcess(sw.SWEXEName, (sw.SWEXECmd == null? string.Empty : sw.SWEXECmd));
+                    installLog = $"Install rev {rev}";
+                }
+                ModelLogger(installLog);
+            }
         }
 
         

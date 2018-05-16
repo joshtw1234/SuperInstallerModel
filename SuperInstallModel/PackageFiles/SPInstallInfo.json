@@ -33,7 +33,7 @@
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
       "swexeName": ".\\PackageData\\BIOS\\8393\\838FB25.EXE",
-      "swexeCmd": "/lrtest",
+      "swexeCmd": "-s -a",
       "swList": [
         {
           "swInstallStates": 0,

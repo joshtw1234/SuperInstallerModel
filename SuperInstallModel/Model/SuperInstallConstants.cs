@@ -19,6 +19,15 @@ namespace SuperInstallModel.Model
         /// </summary>
         public const string SuperInstallJSONFile = "SPInstallInfo.json";
 
+        /// <summary>
+        /// The BIOS Header
+        /// </summary>
+        public const string BIOSFormalHeader = "F";
+        public const string BIOSBetaHeader = "B";
+
+        public const string CmdShutdown = "shutdown";
+        public const string CmdShutdownArgs = "/r /t 1";
+
         #region MyRegion
         //Root path
         public const string WMICIMRoot = "ROOT\\CIMV2";
