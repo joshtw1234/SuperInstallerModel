@@ -39,7 +39,7 @@ namespace SuperInstallModel.Model
             string biosVer = Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIBIOSQueryStry, SuperInstallConstants.WinCaption).ToString();
             Console.WriteLine($"[BIOS Version] {biosVer}");
             Console.WriteLine($"[CPU Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMICPUQueryStry, SuperInstallConstants.WinName)}");
-            
+
             SYSTEM_POWER_STATUS SysPower = new SYSTEM_POWER_STATUS();
             Win32Dlls.GetSystemPowerStatus(ref SysPower);
             string pwMsg = "Power Connected";
@@ -63,6 +63,7 @@ namespace SuperInstallModel.Model
                 logMsg = "IsSupporPlatform true";
             }
             ModelLogger(logMsg);
+            //
             string cmpBIOSstr = SuperInstallConstants.BIOSFormalHeader;
             int compareVersion = int.Parse(platfomInfo.SWFMinVer.Split('.').Last());
             if (resultSPInstall.IsBetaMode)
@@ -100,6 +101,25 @@ namespace SuperInstallModel.Model
                 rev = true;
             }
 #endif
+            string CmdCreateTaskArgs = $"/Create /ru Users /f /sc ONLOGON /TN {SuperInstallConstants.SuperInstallerTaskName} /tr \"{Path.Combine(Directory.GetCurrentDirectory(), AppDomain.CurrentDomain.FriendlyName)}\" /RL HIGHEST";
+            string CmdRunTaskArgs = $"/Run /TN \"{SuperInstallConstants.SuperInstallerTaskName}\"";
+            if (!GetQueryTaskSchedulerResult(SuperInstallConstants.SuperInstallerTaskName))
+            {
+                Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdCreateTaskArgs);
+                Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdRunTaskArgs);
+            }
+            return rev;
+        }
+
+        private bool GetQueryTaskSchedulerResult(string taskScheduleName)
+        {
+            bool rev = false;
+            string CmdQueryTaskArgs = $"/query /TN \"{taskScheduleName}\"";
+            int qRev = Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdQueryTaskArgs);
+            if (qRev == 0)
+            {
+                rev = true;
+            }
             return rev;
         }
 
@@ -148,10 +168,15 @@ namespace SuperInstallModel.Model
                 File.Delete(scPath);
             }
             ModelLogger(installLog);
+            string CmdDelTaskArgs = $"/delete /TN \"{SuperInstallConstants.SuperInstallerTaskName}\" /F";
+            if (GetQueryTaskSchedulerResult(SuperInstallConstants.SuperInstallerTaskName))
+            {
+                Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdDelTaskArgs);
+            }
         }
 
-        
 
-        
+
+
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperInstallModel.Model
+﻿namespace SuperInstallModel.Model
 {
     class SuperInstallConstants
     {
@@ -13,6 +7,7 @@ namespace SuperInstallModel.Model
         public const string FlagPath = @"C:\system.sav\flags\OCCSuperinstaller.flg";
 
         public const string LogPath = @".\OCCSuperInstaller.log";
+        public const string SuperInstallFlag = @"C:\SYSTEM.SAV\flags\OCCSuperinstaller.flg";
 
         /// <summary>
         /// The file name of JSON file
@@ -27,6 +22,9 @@ namespace SuperInstallModel.Model
 
         public const string CmdShutdown = "shutdown";
         public const string CmdShutdownArgs = "/r /t 1";
+
+        public const string CmdTasksSchedule = "schtasks";
+        public const string SuperInstallerTaskName = "OMEN Command Center Super Installer";
 
         #region MyRegion
         //Root path
