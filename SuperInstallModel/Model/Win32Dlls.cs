@@ -86,6 +86,8 @@ namespace SuperInstallModel.Model
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             process.StartInfo.FileName = appName;
             process.StartInfo.Arguments = arguments;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
             process.Start();
             process.WaitForExit();
             return process.ExitCode;

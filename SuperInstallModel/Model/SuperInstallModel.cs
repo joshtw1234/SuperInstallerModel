@@ -11,7 +11,7 @@ namespace SuperInstallModel.Model
         PlatformInfo platfomInfo;
         private void ModelLogger(string msg)
         {
-            Win32Dlls.Logger(SuperInstallConstants.LogFileName, msg);
+            Win32Dlls.Logger(GetActuallPath(SuperInstallConstants.LogFileName), msg);
             Console.WriteLine(msg);
         }
 
