@@ -55,7 +55,7 @@ namespace SuperInstallModel.Model
             }
             catch (Exception ex)
             {
-                Logger(SuperInstallConstants.LogPath, $"{System.Reflection.MethodBase.GetCurrentMethod().Name}:Exception:{ex.Message}");
+                Logger(SuperInstallConstants.LogFileName, $"{System.Reflection.MethodBase.GetCurrentMethod().Name}:Exception:{ex.Message}");
             }
         }
 
@@ -70,13 +70,13 @@ namespace SuperInstallModel.Model
                     revStr = wmi.GetPropertyValue(propertyStr);
                     if (null == revStr)
                     {
-                        Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"Not Found!!\"");
+                        Logger(SuperInstallConstants.LogFileName, $"{propertyStr} \"Not Found!!\"");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger(SuperInstallConstants.LogPath, $"{propertyStr} \"{ex.Message}\"");
+                Logger(SuperInstallConstants.LogFileName, $"{propertyStr} \"{ex.Message}\"");
             }
             return revStr;
         }

@@ -11,21 +11,40 @@ namespace SuperInstallModel.Model
         PlatformInfo platfomInfo;
         private void ModelLogger(string msg)
         {
-            Win32Dlls.Logger(SuperInstallConstants.LogPath, msg);
+            Win32Dlls.Logger(SuperInstallConstants.LogFileName, msg);
             Console.WriteLine(msg);
+        }
+
+        private string GetActuallPath(string fileSubPath)
+        {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileSubPath);
         }
         public bool Initialize()
         {
             bool rev = false;
-            FileInfo fi = new FileInfo(SuperInstallConstants.LogPath);
+            string logPath = GetActuallPath(SuperInstallConstants.LogFileName);
+            FileInfo fi = new FileInfo(logPath);
             if (!fi.Directory.Exists)
             {
                 Directory.CreateDirectory(fi.Directory.FullName);
             }
-            if (!File.Exists(SuperInstallConstants.LogPath))
+            if (!File.Exists(logPath))
             {
-                FileStream fs = File.Create(SuperInstallConstants.LogPath);
+                FileStream fs = File.Create(logPath);
                 fs.Close();
+            }
+
+            if (!File.Exists(SuperInstallConstants.SuperInstallFlag))
+            {
+                FileStream fs = File.Create(SuperInstallConstants.SuperInstallFlag);
+                fs.Close();
+            }
+            string platformInstallData = GetActuallPath(SuperInstallConstants.PlatformInstallData);
+            if (File.Exists(platformInstallData))
+            {
+                string jsonInstallStr = File.ReadAllText(platformInstallData);
+                var resultInstall = JsonConvert.DeserializeObject<PlatformInfo>(jsonInstallStr);
+                return false;
             }
 
             Console.WriteLine($"[Windows Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
@@ -55,7 +74,7 @@ namespace SuperInstallModel.Model
             }
             Console.WriteLine($"[App privilege] {pwMsg}");
             string logMsg = "IsSupporPlatform false";
-            string jsonStr = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), SuperInstallConstants.SuperInstallJSONFile));
+            string jsonStr = File.ReadAllText(GetActuallPath(SuperInstallConstants.SuperInstallJSONFile));
             var resultSPInstall = JsonConvert.DeserializeObject<SuperInstallInfo>(jsonStr);
             platfomInfo = resultSPInstall.PlatformLst.FirstOrDefault(x => x.PlatformSSID.Equals(smbios2.Product));
             if (null != platfomInfo)
@@ -101,13 +120,16 @@ namespace SuperInstallModel.Model
                 rev = true;
             }
 #endif
-            string CmdCreateTaskArgs = $"/Create /ru Users /f /sc ONLOGON /TN {SuperInstallConstants.SuperInstallerTaskName} /tr \"{Path.Combine(Directory.GetCurrentDirectory(), AppDomain.CurrentDomain.FriendlyName)}\" /RL HIGHEST";
+            string CmdCreateTaskArgs = $"/Create /ru Users /f /sc ONLOGON /TN \"{SuperInstallConstants.SuperInstallerTaskName}\" /tr \"{GetActuallPath(AppDomain.CurrentDomain.FriendlyName)}\" /RL HIGHEST";
             string CmdRunTaskArgs = $"/Run /TN \"{SuperInstallConstants.SuperInstallerTaskName}\"";
             if (!GetQueryTaskSchedulerResult(SuperInstallConstants.SuperInstallerTaskName))
             {
-                Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdCreateTaskArgs);
-                Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdRunTaskArgs);
+                int revResu = Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdCreateTaskArgs);
+                ModelLogger($"Create Task Schedule {revResu}");
+                //revResu = Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdRunTaskArgs);
+                ModelLogger($"Run Task Schedule {revResu}");
             }
+            rev = true;
             return rev;
         }
 
@@ -128,10 +150,9 @@ namespace SuperInstallModel.Model
             string installLog = $"BIOS Install {platfomInfo.SWInstallStates}";
             if (platfomInfo.SWInstallStates == InstallStage.None)
             {
-                Win32Dlls.CreateShortcut("OCCSPInstall", Environment.GetFolderPath(Environment.SpecialFolder.Startup), System.IO.Path.Combine(Environment.CurrentDirectory, AppDomain.CurrentDomain.FriendlyName), "Test", string.Empty);
                 installLog = "BIOS Start Install";
                 ModelLogger(installLog);
-                int rev = Win32Dlls.RunProcess(platfomInfo.SWEXEName, platfomInfo.SWEXECmd);
+                int rev = Win32Dlls.RunProcess(GetActuallPath(platfomInfo.SWEXEName), platfomInfo.SWEXECmd);
                 if (rev != 0)
                 {
                     installLog = $"{installLog} {rev}";
@@ -143,14 +164,14 @@ namespace SuperInstallModel.Model
                 return;
             }
             ModelLogger(installLog);
-            foreach(SWInfo sw in platfomInfo.SWList)
+            foreach (SWInfo sw in platfomInfo.SWList)
             {
                 installLog = $"install {sw.SWEXEName} {sw.SWInstallStates}";
                 if (sw.SWInstallStates == InstallStage.None)
                 {
                     installLog = $"install {sw.SWEXEName}";
                     ModelLogger(installLog);
-                    int rev = Win32Dlls.RunProcess(sw.SWEXEName, (sw.SWEXECmd == null? string.Empty : sw.SWEXECmd));
+                    int rev = Win32Dlls.RunProcess(GetActuallPath(sw.SWEXEName), (sw.SWEXECmd == null ? string.Empty : sw.SWEXECmd));
                     installLog = $"Install rev {rev}";
                     sw.SWInstallStates = InstallStage.Done;
                 }
@@ -158,25 +179,24 @@ namespace SuperInstallModel.Model
             }
 
             string output = JsonConvert.SerializeObject(platfomInfo);
-            File.WriteAllText(@".\OCCInstallResult.log", output);
+            File.WriteAllText(GetActuallPath(SuperInstallConstants.PlatformInstallData), output);
 
-            string scPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "OCCSPInstall.lnk");
-            installLog = $"Delete {scPath} false";
-            if (File.Exists(scPath))
-            {
-                installLog = $"Delete {scPath} true";
-                File.Delete(scPath);
-            }
             ModelLogger(installLog);
-            string CmdDelTaskArgs = $"/delete /TN \"{SuperInstallConstants.SuperInstallerTaskName}\" /F";
-            if (GetQueryTaskSchedulerResult(SuperInstallConstants.SuperInstallerTaskName))
+            if (platfomInfo.SWInstallStates == InstallStage.Done &&
+                null == platfomInfo.SWList.FirstOrDefault(x => x.SWInstallStates == InstallStage.None))
             {
-                Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdDelTaskArgs);
+                string CmdDelTaskArgs = $"/delete /TN \"{SuperInstallConstants.SuperInstallerTaskName}\" /F";
+                if (GetQueryTaskSchedulerResult(SuperInstallConstants.SuperInstallerTaskName))
+                {
+                    Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdDelTaskArgs);
+                    installLog = "Delete Task Schedule";
+                    ModelLogger(installLog);
+                }
             }
         }
 
-
-
-
     }
+    
 }
+            
+

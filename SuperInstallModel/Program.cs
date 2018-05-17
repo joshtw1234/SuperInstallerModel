@@ -9,11 +9,10 @@ namespace SuperInstallModel
         {
             string revMsg = "Initial Success";
             Model.SuperInstallModel spModel = new Model.SuperInstallModel();
-            if (!spModel.Initialize())
+            if (spModel.Initialize())
             {
-                revMsg = "Initial Failed";
+                spModel.SetStartInstall();
             }
-            spModel.SetStartInstall();
             //Console.WriteLine(revMsg);
             Console.ReadLine();
         }

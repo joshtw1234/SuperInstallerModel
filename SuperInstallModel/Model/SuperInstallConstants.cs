@@ -6,8 +6,9 @@
 
         public const string FlagPath = @"C:\system.sav\flags\OCCSuperinstaller.flg";
 
-        public const string LogPath = @".\OCCSuperInstaller.log";
+        public const string LogFileName = @"OCCSuperInstaller.log";
         public const string SuperInstallFlag = @"C:\SYSTEM.SAV\flags\OCCSuperinstaller.flg";
+        public const string PlatformInstallData = @"PlatformInstall.data";
 
         /// <summary>
         /// The file name of JSON file
