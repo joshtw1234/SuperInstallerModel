@@ -46,7 +46,7 @@
           "swInstallStates": 0,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "Pnputil",
+          "swexeName": "C:\\Windows\\Sysnative\\pnputil.exe",
           "swexeCmd": "-i -a .\\PackageData\\AppData\\SYSCap444\\hpcustomcapcomp.inf"
         },
         {
