@@ -11,18 +11,18 @@ namespace SuperInstallModel.Model
         PlatformInfo platfomInfo;
         private void ModelLogger(string msg)
         {
-            Win32Dlls.Logger(GetActuallPath(SuperInstallConstants.LogFileName), msg);
+            Win32Dlls.Logger(GetPhysicalPath(SuperInstallConstants.LogFileName), msg);
             Console.WriteLine(msg);
         }
 
-        private string GetActuallPath(string fileSubPath)
+        private string GetPhysicalPath(string fileSubPath)
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileSubPath);
         }
         public bool Initialize()
         {
             bool rev = false;
-            string logPath = GetActuallPath(SuperInstallConstants.LogFileName);
+            string logPath = GetPhysicalPath(SuperInstallConstants.LogFileName);
             FileInfo fi = new FileInfo(logPath);
             if (!fi.Directory.Exists)
             {
@@ -39,7 +39,7 @@ namespace SuperInstallModel.Model
                 FileStream fs = File.Create(SuperInstallConstants.SuperInstallFlag);
                 fs.Close();
             }
-            string platformInstallData = GetActuallPath(SuperInstallConstants.PlatformInstallData);
+            string platformInstallData = GetPhysicalPath(SuperInstallConstants.PlatformInstallData);
             if (File.Exists(platformInstallData))
             {
                 string jsonInstallStr = File.ReadAllText(platformInstallData);
@@ -74,7 +74,7 @@ namespace SuperInstallModel.Model
             }
             Console.WriteLine($"[App privilege] {pwMsg}");
             string logMsg = "IsSupporPlatform false";
-            string jsonStr = File.ReadAllText(GetActuallPath(SuperInstallConstants.SuperInstallJSONFile));
+            string jsonStr = File.ReadAllText(GetPhysicalPath(SuperInstallConstants.SuperInstallJSONFile));
             var resultSPInstall = JsonConvert.DeserializeObject<SuperInstallInfo>(jsonStr);
             platfomInfo = resultSPInstall.PlatformLst.FirstOrDefault(x => x.PlatformSSID.Equals(smbios2.Product));
             if (null != platfomInfo)
@@ -120,7 +120,7 @@ namespace SuperInstallModel.Model
                 rev = true;
             }
 #endif
-            string CmdCreateTaskArgs = $"/Create /ru Users /f /sc ONLOGON /TN \"{SuperInstallConstants.SuperInstallerTaskName}\" /tr \"{GetActuallPath(AppDomain.CurrentDomain.FriendlyName)}\" /RL HIGHEST";
+            string CmdCreateTaskArgs = $"/Create /ru Users /f /sc ONLOGON /TN \"{SuperInstallConstants.SuperInstallerTaskName}\" /tr \"{GetPhysicalPath(AppDomain.CurrentDomain.FriendlyName)}\" /RL HIGHEST";
             string CmdRunTaskArgs = $"/Run /TN \"{SuperInstallConstants.SuperInstallerTaskName}\"";
             if (!GetQueryTaskSchedulerResult(SuperInstallConstants.SuperInstallerTaskName))
             {
@@ -152,7 +152,7 @@ namespace SuperInstallModel.Model
             {
                 installLog = "BIOS Start Install";
                 ModelLogger(installLog);
-                int rev = Win32Dlls.RunProcess(GetActuallPath(platfomInfo.SWEXEName), platfomInfo.SWEXECmd);
+                int rev = Win32Dlls.RunProcess(GetPhysicalPath(platfomInfo.SWEXEName), platfomInfo.SWEXECmd);
                 if (rev != 0)
                 {
                     installLog = $"{installLog} {rev}";
@@ -164,14 +164,20 @@ namespace SuperInstallModel.Model
                 return;
             }
             ModelLogger(installLog);
+            string cmdPath = string.Empty;
             foreach (SWInfo sw in platfomInfo.SWList)
             {
+                cmdPath = GetPhysicalPath(sw.SWEXEName);
+                if (!File.Exists(cmdPath))
+                {
+                    continue;
+                }
                 installLog = $"install {sw.SWEXEName} {sw.SWInstallStates}";
                 if (sw.SWInstallStates == InstallStage.None)
                 {
                     installLog = $"install {sw.SWEXEName}";
                     ModelLogger(installLog);
-                    int rev = Win32Dlls.RunProcess(GetActuallPath(sw.SWEXEName), (sw.SWEXECmd == null ? string.Empty : sw.SWEXECmd));
+                    int rev = Win32Dlls.RunProcess(GetPhysicalPath(sw.SWEXEName), (sw.SWEXECmd == null ? string.Empty : sw.SWEXECmd));
                     installLog = $"Install rev {rev}";
                     sw.SWInstallStates = InstallStage.Done;
                 }
@@ -179,7 +185,7 @@ namespace SuperInstallModel.Model
             }
 
             string output = JsonConvert.SerializeObject(platfomInfo);
-            File.WriteAllText(GetActuallPath(SuperInstallConstants.PlatformInstallData), output);
+            File.WriteAllText(GetPhysicalPath(SuperInstallConstants.PlatformInstallData), output);
 
             ModelLogger(installLog);
             if (platfomInfo.SWInstallStates == InstallStage.Done &&
