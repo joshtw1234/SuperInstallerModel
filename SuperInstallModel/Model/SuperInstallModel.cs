@@ -9,6 +9,7 @@ namespace SuperInstallModel.Model
     class SuperInstallModel
     {
         //Test master modify
+        //test master modify 2
         PlatformInfo platfomInfo;
         private void ModelLogger(string msg)
         {
