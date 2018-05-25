@@ -163,6 +163,9 @@ namespace SuperInstallModel.Model
                 ModelLogger(installLog);
                 return;
             }
+            //Uninstall proc
+            SetUninstallProc();
+            //Start install Apps
             ModelLogger(installLog);
             string cmdPath = string.Empty;
             foreach (SWInfo sw in platfomInfo.SWList)
@@ -198,6 +201,32 @@ namespace SuperInstallModel.Model
                     installLog = "Delete Task Schedule";
                     ModelLogger(installLog);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Set start to uninstall process.
+        /// </summary>
+        private void SetUninstallProc()
+        {
+            //Detect if the previous version of the OMEN CC App is installed
+            //The location of the uninstaller in the registry depends on the app's architecture and installer technology. This is different for every app.
+            Microsoft.Win32.RegistryKey reg = Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry64).OpenSubKey(SuperInstallConstants.LegacyOmenSWKey);
+            if (null == reg)
+            {
+                //Legacy OMEN not found
+                return;
+            }
+            //Get Uninstall string.
+            string _uninstallString = (string)reg.GetValue("UninstallString");
+            reg.Close();
+            //In this case, the uninstaller takes additional arguments.
+            //Since the uninstallString is app-specific, make sure your call to the uninstaller is properly formatted before calling create process
+            string[] uninstallArgs = _uninstallString.Split(' ');
+            int rev = Win32Dlls.RunProcess(uninstallArgs[0], uninstallArgs[1]);
+            if (rev != 0)
+            {
+                //Uninstallation was unsuccessful - App Developer can choose to block the app here
             }
         }
 
