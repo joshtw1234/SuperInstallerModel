@@ -88,6 +88,8 @@ namespace SuperInstallModel.Model
             process.StartInfo.Arguments = arguments;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            Console.WriteLine($"RunProcess {process.StartInfo.WorkingDirectory} {appName}");
             process.Start();
             process.WaitForExit();
             return process.ExitCode;

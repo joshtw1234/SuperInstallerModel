@@ -7,13 +7,13 @@ namespace SuperInstallModel
     {
         static void Main(string[] args)
         {
-            string revMsg = "Initial Success";
+            string revMsg = "Super Installer Done";
             Model.SuperInstallModel spModel = new Model.SuperInstallModel();
             if (spModel.Initialize())
             {
                 spModel.SetStartInstall();
             }
-            //Console.WriteLine(revMsg);
+            Console.WriteLine(revMsg);
             Console.ReadLine();
         }
     }

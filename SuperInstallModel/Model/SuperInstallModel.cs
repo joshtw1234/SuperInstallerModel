@@ -152,7 +152,7 @@ namespace SuperInstallModel.Model
             {
                 installLog = "BIOS Start Install";
                 ModelLogger(installLog);
-                int rev = Win32Dlls.RunProcess(GetPhysicalPath(platfomInfo.SWEXEName), platfomInfo.SWEXECmd);
+                int rev = Win32Dlls.RunProcess(platfomInfo.SWEXEName, platfomInfo.SWEXECmd);
                 if (rev != 0)
                 {
                     installLog = $"{installLog} {rev}";
@@ -180,7 +180,7 @@ namespace SuperInstallModel.Model
                 {
                     installLog = $"install {sw.SWEXEName}";
                     ModelLogger(installLog);
-                    int rev = Win32Dlls.RunProcess(GetPhysicalPath(sw.SWEXEName), (sw.SWEXECmd == null ? string.Empty : sw.SWEXECmd));
+                    int rev = Win32Dlls.RunProcess(sw.SWEXEName, (sw.SWEXECmd == null ? string.Empty : sw.SWEXECmd));
                     installLog = $"Install rev {rev}";
                     sw.SWInstallStates = InstallStage.Done;
                 }
