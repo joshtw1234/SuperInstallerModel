@@ -5,6 +5,7 @@
     //Marlins 1.0
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": 8392,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
@@ -43,6 +44,7 @@
     },
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": 8393,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
@@ -81,6 +83,7 @@
     },
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": 8394,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
@@ -120,6 +123,7 @@
     //Pirates 1.0
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": "838F",
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
@@ -158,6 +162,7 @@
     },
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": 8390,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
@@ -196,6 +201,7 @@
     },
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": 8391,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
@@ -235,6 +241,7 @@
     //Dragons 1.0
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": "83A5",
       "swBMinVer": "B.37",
       "swFMinVer": "F.15",
@@ -273,6 +280,7 @@
     },
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": "83A6",
       "swBMinVer": "B.37",
       "swFMinVer": "F.15",
@@ -312,6 +320,7 @@
     //Hurricane-I 1.0
     {
       "swInstallStates": 0,
+      "isDesktop": 1,
       "platformSSID": 8307,
       "swBMinVer": "B.80",
       "swFMinVer": null,
@@ -350,6 +359,7 @@
     },
     {
       "swInstallStates": 0,
+      "isDesktop": 1,
       "platformSSID": 8308,
       "swBMinVer": "B.80",
       "swFMinVer": null,
@@ -389,6 +399,7 @@
     //Hurricane-A 1.0
     {
       "swInstallStates": 0,
+      "isDesktop": 1,
       "platformSSID": 8309,
       "swBMinVer": null,
       "swFMinVer": "F.20",
@@ -428,6 +439,7 @@
     //Hurricane-I 1.1
     {
       "swInstallStates": 0,
+      "isDesktop": 1,
       "platformSSID": 8437,
       "swBMinVer": null,
       "swFMinVer": "F.20",
@@ -467,6 +479,7 @@
     //Typhon 1.2
     {
       "swInstallStates": 0,
+      "isDesktop": 1,
       "platformSSID": "839F",
       "swBMinVer": "B.32",
       "swFMinVer": "F.20",
@@ -506,6 +519,7 @@
     //PerseusC 1.0
     {
       "swInstallStates": 0,
+      "isDesktop": 0,
       "platformSSID": 8375,
       "swBMinVer": null,
       "swFMinVer": "F.20",
