@@ -226,6 +226,7 @@ namespace SuperInstallModel.Model
             //Get Uninstall string.
             string _uninstallString = (string)reg.GetValue("UninstallString");
             reg.Close();
+            ModelLogger(_uninstallString);
             //In this case, the uninstaller takes additional arguments.
             //Since the uninstallString is app-specific, make sure your call to the uninstaller is properly formatted before calling create process
             string[] uninstallArgs = _uninstallString.Split(' ');
