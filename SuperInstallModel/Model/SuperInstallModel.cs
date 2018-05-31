@@ -279,7 +279,8 @@ namespace SuperInstallModel.Model
             //In this case, the uninstaller takes additional arguments.
             //Since the uninstallString is app-specific, make sure your call to the uninstaller is properly formatted before calling create process
             string[] uninstallArgs = _uninstallString.Split(' ');
-            int rev = Win32Dlls.RunProcess(uninstallArgs[0], uninstallArgs[1]);
+            string uninstallOpt = $"{uninstallArgs[1]} /qb";
+            int rev = Win32Dlls.RunProcess(uninstallArgs[0], uninstallOpt);
             if (rev != 0)
             {
                 //Uninstallation was unsuccessful - App Developer can choose to block the app here
