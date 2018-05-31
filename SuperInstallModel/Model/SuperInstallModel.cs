@@ -40,11 +40,12 @@ namespace SuperInstallModel.Model
                 fs.Close();
             }
             string platformInstallData = GetPhysicalPath(SuperInstallConstants.PlatformInstallData);
+            PlatformInfo tmpP = null;
             if (File.Exists(platformInstallData))
             {
                 string jsonInstallStr = File.ReadAllText(platformInstallData);
-                var resultInstall = JsonConvert.DeserializeObject<PlatformInfo>(jsonInstallStr);
-                if (resultInstall.SuperInstallStates == InstallStage.Done)
+                tmpP = JsonConvert.DeserializeObject<PlatformInfo>(jsonInstallStr);
+                if (tmpP.SuperInstallStates == InstallStage.Done)
                 {
                     return false;
                 }
@@ -85,6 +86,11 @@ namespace SuperInstallModel.Model
                 logMsg = "IsSupporPlatform true";
             }
             ModelLogger(logMsg);
+
+            if (tmpP != null)
+            {
+                platfomInfo = tmpP;
+            }
             //
             string cmpBIOSstr = SuperInstallConstants.BIOSFormalHeader;
             int compareVersion = int.Parse(platfomInfo.SWFMinVer.Split('.').Last());
@@ -169,8 +175,6 @@ namespace SuperInstallModel.Model
                 ModelLogger(installLog);
                 return;
             }
-            //Uninstall proc
-            SetUninstallProc();
             //Start install Apps
             ModelLogger(installLog);
             string cmdPath = string.Empty;
@@ -192,8 +196,11 @@ namespace SuperInstallModel.Model
                 }
                 ModelLogger(installLog);
             }
-
+            //Uninstall proc
+            SetUninstallProc();
+            //
             platfomInfo.SuperInstallStates = InstallStage.Done;
+            output = JsonConvert.SerializeObject(platfomInfo);
             File.WriteAllText(GetPhysicalPath(SuperInstallConstants.PlatformInstallData), output);
 
             ModelLogger(installLog);
