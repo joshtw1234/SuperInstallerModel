@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,40 @@ namespace SuperInstallModel.Model
         private string GetPhysicalPath(string fileSubPath)
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileSubPath);
+        }
+
+        private void GetCapDriverStates(string devRootKey)
+        {
+            const string RegDriverKey = "Driver";
+            RegistryKey reg = Registry.LocalMachine.OpenSubKey(devRootKey);
+            if (reg != null)
+            {
+                string[] subKeys = reg.GetSubKeyNames();
+                reg.Close();
+                ModelLogger($"Get {devRootKey} {subKeys.Length} name {subKeys[0]}");
+                devRootKey = Path.Combine(devRootKey, subKeys[0]);
+                RegistryKey subReg = Registry.LocalMachine.OpenSubKey(devRootKey);
+                if (subReg != null)
+                {
+                    subKeys = subReg.GetValueNames();
+                    string msg = "Failed";
+                    if (subKeys.Contains(RegDriverKey))
+                    {
+                        msg = "Sys Pass";
+                        if (devRootKey.Contains("HPIC0003"))
+                        {
+                            platfomInfo.SWList.First().SWInstallStates = InstallStage.Done;
+                        }
+                        else
+                        {
+                            msg = "OMEN Pass";
+                            platfomInfo.SWList[1].SWInstallStates = InstallStage.Done;
+                        }
+                    }
+                    ModelLogger($"Get {devRootKey} {subKeys.Length} Driver {msg}");
+                    subReg.Close();
+                }
+            }
         }
         public bool Initialize()
         {
@@ -107,8 +142,14 @@ namespace SuperInstallModel.Model
             {
                 platfomInfo.SWInstallStates = InstallStage.Done;
                 logMsg = "BIOS True";
+                ModelLogger($"[{logMsg}] BIOS ver {biosVer} {platfomInfo.SWInstallStates}");
+                //Only BIOS installed then check Driver
+                GetCapDriverStates(SuperInstallConstants.RegKeySYSInfoCap);
+                GetCapDriverStates(SuperInstallConstants.RegKeyOMENCap);
             }
-            ModelLogger($"[{logMsg}] BIOS ver {biosVer} {platfomInfo.SWInstallStates}");
+            
+
+            
 #if false
             var dicSMBIOS = (new MSFWTableHelper().GetSMBIOSData(Provider.RSMB)) as Dictionary<int, CBaseSMBIOSType>;
             if (dicSMBIOS.Count > 0)
@@ -129,13 +170,14 @@ namespace SuperInstallModel.Model
                 rev = true;
             }
 #endif
+
             string CmdCreateTaskArgs = $"/Create /ru Users /f /sc ONLOGON /TN \"{SuperInstallConstants.SuperInstallerTaskName}\" /tr \"{GetPhysicalPath(AppDomain.CurrentDomain.FriendlyName)}\" /RL HIGHEST";
             string CmdRunTaskArgs = $"/Run /TN \"{SuperInstallConstants.SuperInstallerTaskName}\"";
-            if (!GetQueryTaskSchedulerResult(SuperInstallConstants.SuperInstallerTaskName))
+            if (platfomInfo.SWInstallStates == InstallStage.None && !GetQueryTaskSchedulerResult(SuperInstallConstants.SuperInstallerTaskName))
             {
                 int revResu = Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdCreateTaskArgs);
                 ModelLogger($"Create Task Schedule {revResu}");
-                //revResu = Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdRunTaskArgs);
+                revResu = Win32Dlls.RunProcess(SuperInstallConstants.CmdTasksSchedule, CmdRunTaskArgs);
                 ModelLogger($"Run Task Schedule {revResu}");
             }
             rev = true;
