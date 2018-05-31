@@ -1,12 +1,13 @@
 {
   "isBetaMode": 1,
-  "superInstallStates": 0,
   "platformLst": [
     //Marlins 1.0
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": 8392,
+      "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
       "swexeName": "PackageData\\BIOS\\8392\\838FB26_WIN.EXE",
@@ -14,38 +15,44 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": 8393,
+      "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
       "swexeName": "PackageData\\BIOS\\8393\\838FB26_WIN.EXE",
@@ -53,38 +60,44 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": 8394,
+      "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
       "swexeName": "PackageData\\BIOS\\8394\\838FB26_WIN.EXE",
@@ -92,39 +105,45 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     //Pirates 1.0
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": "838F",
+      "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
       "swexeName": "PackageData\\BIOS\\838F\\838FB25.EXE",
@@ -132,38 +151,44 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": 8390,
+      "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
       "swexeName": "PackageData\\BIOS\\8390\\838FB25.EXE",
@@ -171,38 +196,44 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": 8391,
+      "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
       "swexeName": "PackageData\\BIOS\\8391\\838FB25.EXE",
@@ -210,39 +241,45 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     //Dragons 1.0
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": "83A5",
+      "category": 0,
       "swBMinVer": "B.37",
       "swFMinVer": "F.15",
       "swexeName": "PackageData\\BIOS\\83A5\\838FB25.EXE",
@@ -250,38 +287,44 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": "83A6",
+      "category": 0,
       "swBMinVer": "B.37",
       "swFMinVer": "F.15",
       "swexeName": "PackageData\\BIOS\\83A6\\838FB25.EXE",
@@ -289,39 +332,45 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     //Hurricane-I 1.0
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 1,
       "platformSSID": 8307,
+      "category": 0,
       "swBMinVer": "B.80",
       "swFMinVer": null,
       "swexeName": "PackageData\\BIOS\\8307\\838FB25.EXE",
@@ -329,38 +378,44 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 1,
       "platformSSID": 8308,
+      "category": 0,
       "swBMinVer": "B.80",
       "swFMinVer": null,
       "swexeName": "PackageData\\BIOS\\8308\\838FB25.EXE",
@@ -368,39 +423,45 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     //Hurricane-A 1.0
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 1,
       "platformSSID": 8309,
+      "category": 0,
       "swBMinVer": null,
       "swFMinVer": "F.20",
       "swexeName": "PackageData\\BIOS\\8309\\838FB25.EXE",
@@ -408,39 +469,45 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     //Hurricane-I 1.1
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 1,
       "platformSSID": 8437,
+      "category": 0,
       "swBMinVer": null,
       "swFMinVer": "F.20",
       "swexeName": "PackageData\\BIOS\\8437\\838FB25.EXE",
@@ -448,39 +515,45 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     //Typhon 1.2
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 1,
       "platformSSID": "839F",
+      "category": 0,
       "swBMinVer": "B.32",
       "swFMinVer": "F.20",
       "swexeName": "PackageData\\BIOS\\839F\\838FB25.EXE",
@@ -488,39 +561,45 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]
     },
     //PerseusC 1.0
     {
+      "superInstallStates": 0,
       "swInstallStates": 0,
       "isDesktop": 0,
       "platformSSID": 8375,
+      "category": 0,
       "swBMinVer": null,
       "swFMinVer": "F.20",
       "swexeName": "PackageData\\BIOS\\8375\\838FB25.EXE",
@@ -528,30 +607,34 @@
       "swList": [
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\OMENCap220\\drvinst.cmd",
+          "swexeName": "PackageData\\Drivers\\OMENCap\\220\\drvinst.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 1,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SYSCap444\\install.cmd",
+          "swexeName": "PackageData\\Drivers\\SYSCap\\444\\install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SDK105\\Install.cmd",
+          "swexeName": "PackageData\\OmenSoftware\\SDK\\105\\Install.cmd",
           "swexeCmd": null
         },
         {
           "swInstallStates": 0,
+          "category": 2,
           "swBMinVer": null,
           "swFMinVer": null,
-          "swexeName": "PackageData\\AppData\\SystemEvent\\Install.bat",
+          "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
         }
       ]

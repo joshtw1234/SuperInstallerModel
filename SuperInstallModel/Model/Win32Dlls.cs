@@ -179,7 +179,12 @@ namespace SuperInstallModel.Model
 
     public class PlatformInfo : SWInfo
     {
+        /// <summary>
+        /// The super install states.
+        /// </summary>
+        public InstallStage SuperInstallStates;
         public string PlatformSSID;
+        public bool IsDesktop;
         public List<SWInfo> SWList;
     }
 
@@ -189,10 +194,6 @@ namespace SuperInstallModel.Model
         /// The test mode
         /// </summary>
         public bool IsBetaMode;
-        /// <summary>
-        /// The super install states.
-        /// </summary>
-        public InstallStage SuperInstallStates;
         /// <summary>
         /// The list of platform info
         /// </summary>

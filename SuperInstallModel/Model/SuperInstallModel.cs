@@ -44,7 +44,10 @@ namespace SuperInstallModel.Model
             {
                 string jsonInstallStr = File.ReadAllText(platformInstallData);
                 var resultInstall = JsonConvert.DeserializeObject<PlatformInfo>(jsonInstallStr);
-                return false;
+                if (resultInstall.SuperInstallStates == InstallStage.Done)
+                {
+                    return false;
+                }
             }
 
             Console.WriteLine($"[Windows Name] {Win32Dlls.GetManageObjValue(SuperInstallConstants.WMICIMRoot, SuperInstallConstants.WMIQueryStr, SuperInstallConstants.WinCaption)}");
@@ -147,6 +150,7 @@ namespace SuperInstallModel.Model
 
         public void SetStartInstall()
         {
+            string output = JsonConvert.SerializeObject(platfomInfo);
             string installLog = $"BIOS Install {platfomInfo.SWInstallStates}";
             if (platfomInfo.SWInstallStates == InstallStage.None)
             {
@@ -157,6 +161,8 @@ namespace SuperInstallModel.Model
                 {
                     installLog = $"{installLog} {rev}";
                 }
+                platfomInfo.SuperInstallStates = InstallStage.Processing;
+                File.WriteAllText(GetPhysicalPath(SuperInstallConstants.PlatformInstallData), output);
                 ModelLogger(installLog);
                 rev = Win32Dlls.RunProcess(SuperInstallConstants.CmdShutdown, SuperInstallConstants.CmdShutdownArgs);
                 installLog = $"Shutdown {rev}";
@@ -187,7 +193,7 @@ namespace SuperInstallModel.Model
                 ModelLogger(installLog);
             }
 
-            string output = JsonConvert.SerializeObject(platfomInfo);
+            platfomInfo.SuperInstallStates = InstallStage.Done;
             File.WriteAllText(GetPhysicalPath(SuperInstallConstants.PlatformInstallData), output);
 
             ModelLogger(installLog);
