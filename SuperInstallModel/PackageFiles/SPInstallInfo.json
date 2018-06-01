@@ -44,6 +44,14 @@
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
+          "swexeCmd": null
         }
       ]
     },
@@ -89,6 +97,14 @@
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
+          "swexeCmd": null
         }
       ]
     },
@@ -133,6 +149,14 @@
           "swBMinVer": null,
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
+          "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
           "swexeCmd": null
         }
       ]
@@ -180,6 +204,14 @@
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
+          "swexeCmd": null
         }
       ]
     },
@@ -225,6 +257,14 @@
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
+          "swexeCmd": null
         }
       ]
     },
@@ -269,6 +309,14 @@
           "swBMinVer": null,
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
+          "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
           "swexeCmd": null
         }
       ]
@@ -316,6 +364,14 @@
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
+          "swexeCmd": null
         }
       ]
     },
@@ -360,6 +416,14 @@
           "swBMinVer": null,
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
+          "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
           "swexeCmd": null
         }
       ]
@@ -407,6 +471,14 @@
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
+          "swexeCmd": null
         }
       ]
     },
@@ -451,6 +523,14 @@
           "swBMinVer": null,
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
+          "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
           "swexeCmd": null
         }
       ]
@@ -498,6 +578,14 @@
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
+          "swexeCmd": null
         }
       ]
     },
@@ -543,6 +631,14 @@
           "swBMinVer": null,
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
+          "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
           "swexeCmd": null
         }
       ]
@@ -590,6 +686,14 @@
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
           "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
+          "swexeCmd": null
         }
       ]
     },
@@ -635,6 +739,14 @@
           "swBMinVer": null,
           "swFMinVer": null,
           "swexeName": "PackageData\\OmenSoftware\\SystemEvent\\100\\Install.bat",
+          "swexeCmd": null
+        },
+        {
+          "swInstallStates": 0,
+          "category": 2,
+          "swBMinVer": null,
+          "swFMinVer": null,
+          "swexeName": "PackageData\\OmenSoftware\\RecoveryManager\\0531\\install.cmd",
           "swexeCmd": null
         }
       ]
