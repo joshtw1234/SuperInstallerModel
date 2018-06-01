@@ -651,8 +651,8 @@
       "platformSSID": "839F",
       "category": 0,
       "swBMinVer": "B.32",
-      "swFMinVer": "F.20",
-      "swexeName": "PackageData\\BIOS\\839F\\838FB25.EXE",
+      "swFMinVer": "F.21",
+      "swexeName": "PackageData\\BIOS\\839F\\0839FB32.exe",
       "swexeCmd": "-s -a",
       "swList": [
         {

@@ -544,7 +544,7 @@
       "category": 0,
       "swBMinVer": null,
       "swFMinVer": "F.20",
-      "swexeName": "PackageData\\BIOS\\8309\\838FB25.EXE",
+      "swexeName": "PackageData\\BIOS\\8309\\08309F20.exe",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -598,7 +598,7 @@
       "category": 0,
       "swBMinVer": null,
       "swFMinVer": "F.20",
-      "swexeName": "PackageData\\BIOS\\8437\\838FB25.EXE",
+      "swexeName": "PackageData\\BIOS\\8437\\08437F20.exe",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -651,8 +651,8 @@
       "platformSSID": "839F",
       "category": 0,
       "swBMinVer": "B.32",
-      "swFMinVer": "F.20",
-      "swexeName": "PackageData\\BIOS\\839F\\838FB25.EXE",
+      "swFMinVer": "F.21",
+      "swexeName": "PackageData\\BIOS\\839F\\0839FF21.exe",
       "swexeCmd": "-s -a",
       "swList": [
         {
