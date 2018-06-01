@@ -10,7 +10,7 @@
       "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
-      "swexeName": "PackageData\\BIOS\\8392\\838FB26_WIN.EXE",
+      "swexeName": "PackageData\\BIOS\\8392\\838FF16.EXE",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -63,7 +63,7 @@
       "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
-      "swexeName": "PackageData\\BIOS\\8393\\838FB26_WIN.EXE",
+      "swexeName": "PackageData\\BIOS\\8393\\838FF16.EXE",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -116,7 +116,7 @@
       "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
-      "swexeName": "PackageData\\BIOS\\8394\\838FB26_WIN.EXE",
+      "swexeName": "PackageData\\BIOS\\8394\\838FF16.EXE",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -170,7 +170,7 @@
       "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
-      "swexeName": "PackageData\\BIOS\\838F\\838FB26_WIN.EXE",
+      "swexeName": "PackageData\\BIOS\\838F\\838FF16.EXE",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -223,7 +223,7 @@
       "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
-      "swexeName": "PackageData\\BIOS\\8390\\838FB26_WIN.EXE",
+      "swexeName": "PackageData\\BIOS\\8390\\838FF16.EXE",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -276,7 +276,7 @@
       "category": 0,
       "swBMinVer": "B.26",
       "swFMinVer": "F.16",
-      "swexeName": "PackageData\\BIOS\\8391\\838FB26_WIN.EXE",
+      "swexeName": "PackageData\\BIOS\\8391\\838FF16.EXE",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -330,7 +330,7 @@
       "category": 0,
       "swBMinVer": "B.37",
       "swFMinVer": "F.15",
-      "swexeName": "PackageData\\BIOS\\83A5\\083A5B37_WIN.EXE",
+      "swexeName": "PackageData\\BIOS\\83A5\\083A5F15_WIN.EXE",
       "swexeCmd": "-s -a",
       "swList": [
         {
@@ -383,7 +383,7 @@
       "category": 0,
       "swBMinVer": "B.37",
       "swFMinVer": "F.15",
-      "swexeName": "PackageData\\BIOS\\83A6\\083A5B37_WIN.EXE",
+      "swexeName": "PackageData\\BIOS\\83A6\\083A5F15_WIN.EXE",
       "swexeCmd": "-s -a",
       "swList": [
         {
