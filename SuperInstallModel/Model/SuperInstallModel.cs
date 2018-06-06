@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -198,6 +199,8 @@ namespace SuperInstallModel.Model
 
         public void SetStartInstall()
         {
+            SetUninstallProc();
+            return;
             string output = JsonConvert.SerializeObject(platfomInfo);
             string installLog = $"BIOS Install {platfomInfo.SWInstallStates}";
             if (platfomInfo.SWInstallStates == InstallStage.None)
@@ -264,6 +267,18 @@ namespace SuperInstallModel.Model
         /// </summary>
         private void SetUninstallProc()
         {
+            //Kill Legacy GUI
+            foreach (var process in Process.GetProcessesByName(SuperInstallConstants.LegacyOMENGUI))
+            {
+                process.Kill();
+                ModelLogger($"kill GUI");
+            }
+            //Kill Legacy Background
+            foreach (var process in Process.GetProcessesByName(SuperInstallConstants.LegacyOMENBackground))
+            {
+                process.Kill();
+                ModelLogger($"Kill BG");
+            }
             //Detect if the previous version of the OMEN CC App is installed
             //The location of the uninstaller in the registry depends on the app's architecture and installer technology. This is different for every app.
             Microsoft.Win32.RegistryKey reg = Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry64).OpenSubKey(SuperInstallConstants.LegacyOmenSWKey);

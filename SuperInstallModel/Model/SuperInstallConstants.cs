@@ -6,6 +6,9 @@
         public const string RegKeyOMENCap = "System\\CurrentControlSet\\Enum\\ACPI\\HPIC0004";
         public const string LegacyOmenSWKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{B13CB0A1-4411-404C-A7DB-BB1441B089EC}";
 
+        public const string LegacyOMENGUI = "OMEN Command Center";
+        public const string LegacyOMENBackground = "HPOMENBG";
+
         public const string FlagPath = @"C:\system.sav\flags\OCCSuperinstaller.flg";
 
         public const string LogFileName = @"OCCSuperInstaller.log";
